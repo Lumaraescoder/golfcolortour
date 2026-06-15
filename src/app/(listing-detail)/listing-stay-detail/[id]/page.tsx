@@ -15,11 +15,11 @@ import ButtonClose from "@/shared/ButtonClose";
 import Input from "@/shared/Input";
 import LikeSaveBtns from "@/components/LikeSaveBtns";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import { Amenities_demos, PHOTOS } from "./constant";
-import StayDatesRangeInput from "./StayDatesRangeInput";
-import GuestsInput from "./GuestsInput";
-import SectionDateRange from "../SectionDateRange";
+import { usePathname, useRouter, useParams } from "next/navigation";
+import { Amenities_demos, PHOTOS } from "../constant";
+import StayDatesRangeInput from "../StayDatesRangeInput";
+import GuestsInput from "../GuestsInput";
+import SectionDateRange from "../../SectionDateRange";
 import { Route } from "next";
 
 export interface ListingStayDetailPageProps {}
@@ -31,6 +31,8 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({}) => {
 
   const thisPathname = usePathname();
   const router = useRouter();
+  const params = useParams();
+  const listingId = params?.id;
 
   function closeModalAmenities() {
     setIsOpenModalAmenities(false);
@@ -55,7 +57,7 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({}) => {
 
         {/* 2 */}
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
-          Beach House in Collingwood
+          Beach House in Collingwood {listingId ? `#${listingId}` : ""}
         </h2>
 
         {/* 3 */}
@@ -517,7 +519,7 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({}) => {
         {/* PRICE */}
         <div className="flex justify-between">
           <span className="text-3xl font-semibold">
-            $119
+            $11
             <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">
               /night
             </span>
@@ -576,9 +578,8 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({}) => {
           {PHOTOS.filter((_, i) => i >= 1 && i < 5).map((item, index) => (
             <div
               key={index}
-              className={`relative rounded-md sm:rounded-xl overflow-hidden ${
-                index >= 3 ? "hidden sm:block" : ""
-              }`}
+              className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 3 ? "hidden sm:block" : ""
+                }`}
             >
               <div className="aspect-w-4 aspect-h-3 sm:aspect-w-6 sm:aspect-h-5">
                 <Image

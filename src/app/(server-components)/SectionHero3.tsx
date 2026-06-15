@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import imagePng from "@/images/travelhero2.png";
+import capadesktopJpeg from "@/images/capadesktop.jpeg";
+import capamobileJpeg from "@/images/capamobile.jpeg";
 import Image from "next/image";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 
@@ -18,22 +19,27 @@ const SectionHero3: FC<SectionHero3Props> = ({ className = "" }) => {
           Booking tax-free from Chis. platform
         </span>
         <h2 className="font-bold text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl !leading-[115%] ">
-          New generation <br /> of booking
+          Lisbon <br /> Mates
         </h2>
         <ButtonPrimary
           sizeClass="px-6 py-3 lg:px-8 lg:py-4 rounded-xl"
           fontSize="text-sm sm:text-base lg:text-lg font-medium"
         >
-          Keep calm & travel on
+          Book now
         </ButtonPrimary>
       </div>
       <div className="relative aspect-w-1 aspect-h-1 sm:aspect-w-4 sm:aspect-h-3 lg:aspect-w-16 lg:aspect-h-9 xl:aspect-h-8 ">
-        <Image
-          className="absolute inset-0 object-cover rounded-xl"
-          src={imagePng}
-          alt="hero"
-          priority
-        />
+        <picture>
+          <source media="(max-width: 768px)" srcSet={capamobileJpeg.src} />
+          <Image
+            className="absolute inset-0 object-cover rounded-xl"
+            src={capadesktopJpeg}
+            alt="hero"
+            priority
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </picture>
       </div>
     </div>
   );

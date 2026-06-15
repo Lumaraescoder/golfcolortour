@@ -9,7 +9,8 @@ import Comment from "@/shared/Comment";
 import SocialsList from "@/shared/SocialsList";
 import Textarea from "@/shared/Textarea";
 import Image from "next/image";
-import travelhero2Image from "@/images/travelhero2.png";
+import capadesktopJpeg from "@/images/capadesktop.jpeg";
+import capamobileJpeg from "@/images/capamobile.jpeg";
 import Link from "next/link";
 import { Route } from "@/routers/types";
 
@@ -117,7 +118,15 @@ const Page = ({
           {`        It's probably important that images look okay here by default as well:`}
         </p>
         <figure>
-          <Image src={travelhero2Image} alt="blog" className="rounded-2xl" />
+          <picture>
+            <source media="(max-width: 768px)" srcSet={capamobileJpeg.src} />
+            <Image
+              src={capadesktopJpeg}
+              alt="blog"
+              className="rounded-2xl"
+              fill={false}
+            />
+          </picture>
           <figcaption>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure vel
             officiis ipsum placeat itaque neque dolorem modi perspiciatis dolor
@@ -291,7 +300,15 @@ const Page = ({
     <div className="nc-PageSingle pt-8 lg:pt-16 ">
       {renderHeader()}
       <div className="container my-10 sm:my-12 ">
-        <Image className="w-full rounded-xl" src={travelhero2Image} alt="" />
+        <picture>
+          <source media="(max-width: 768px)" srcSet={capamobileJpeg.src} />
+          <Image
+            className="w-full rounded-xl"
+            src={capadesktopJpeg}
+            alt=""
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </picture>
       </div>
 
       <div className="nc-SingleContent container space-y-10">
