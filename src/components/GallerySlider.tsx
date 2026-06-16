@@ -132,9 +132,8 @@ export default function GallerySlider({
           <div className="flex items-center justify-center absolute bottom-2 left-1/2 transform -translate-x-1/2 space-x-1.5">
             {images.map((_, i) => (
               <button
-                className={`w-1.5 h-1.5 rounded-full ${
-                  i === index ? "bg-white" : "bg-white/60 "
-                }`}
+                className={`w-1.5 h-1.5 rounded-full ${i === index ? "bg-white" : "bg-white/60 "
+                  }`}
                 onClick={() => changePhotoId(i)}
                 key={i}
               />

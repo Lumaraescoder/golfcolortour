@@ -8,9 +8,9 @@ import BackgroundSection from "@/components/BackgroundSection";
 import SectionClientSay from "@/components/SectionClientSay";
 import SectionSubscribe2 from "@/components/SectionSubscribe2";
 
-export interface PageAboutProps {}
+export interface PageAboutProps { }
 
-const PageAbout: FC<PageAboutProps> = ({}) => {
+const PageAbout: FC<PageAboutProps> = ({ }) => {
   return (
     <div className={`nc-PageAbout overflow-hidden relative`}>
       {/* ======== BG GLASS ======== */}
@@ -32,7 +32,7 @@ const PageAbout: FC<PageAboutProps> = ({}) => {
 
         <SectionStatistic />
 
-        <SectionSubscribe2 />
+        {/* <SectionSubscribe2 /> */}
       </div>
     </div>
   );

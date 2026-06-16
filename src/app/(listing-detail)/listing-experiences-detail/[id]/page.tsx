@@ -21,173 +21,159 @@ import SectionDateRange from "../../SectionDateRange";
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 
 const ListingExperiencesDetailPageDynamic: FC = () => {
-  const params = useParams();
-  const id = params?.id;
-  const thisPathname = usePathname();
-  const router = useRouter();
+ const params = useParams();
+ const id = params?.id;
+ const thisPathname = usePathname();
+ const router = useRouter();
 
-  const all = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS];
-  const item = all.find((it) => (it.href || "").endsWith(`/${id}`));
+ const all = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS];
+ const item = all.find((it) => (it.href || "").endsWith(`/${id}`));
 
-  const handleOpenModalImageGallery = () => {
-    router.push(`${thisPathname}/?modal=PHOTO_TOUR_SCROLLABLE` as Route);
-  };
+ const handleOpenModalImageGallery = () => {
+  router.push(`${thisPathname}/?modal=PHOTO_TOUR_SCROLLABLE` as Route);
+ };
 
-  if (!item) {
-    return <div className="container py-20">Listing not found: {id}</div>;
-  }
+ if (!item) {
+  return <div className="container py-20">Listing not found: {id}</div>;
+ }
 
-  const PHOTOS = item.galleryImgs || [];
+ const PHOTOS = item.galleryImgs || [];
 
-  return (
-    <div className={` nc-ListingExperiencesDetailPage `}>
-      <header className="rounded-md sm:rounded-xl">
-        <div className="relative grid grid-cols-4 gap-1 sm:gap-2">
-          <div
-            className="col-span-3 row-span-3 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
-            onClick={handleOpenModalImageGallery}
-          >
-            <Image
-              alt={item.title}
-              fill
-              className="object-cover  rounded-md sm:rounded-xl"
-              src={PHOTOS[0] || item.featuredImage || ""}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
-          </div>
+ return (
+  <div className={` nc-ListingExperiencesDetailPage `}>
+   <header className="rounded-md sm:rounded-xl">
+    <div className="relative grid grid-cols-4 gap-1 sm:gap-2">
+     <div
+      className="col-span-3 row-span-3 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
+      onClick={handleOpenModalImageGallery}
+     >
+      <Image
+       alt={item.title}
+       fill
+       className="object-cover  rounded-md sm:rounded-xl"
+       src={PHOTOS[0] || item.featuredImage || ""}
+       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+      />
+      <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
+     </div>
 
-          {PHOTOS.filter((_, i) => i >= 1 && i < 4).map((p: string, index: number) => (
-            <div
-              key={index}
-              className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 2 ? "block" : ""}`}
-            >
-              <div className="aspect-w-4 aspect-h-3">
-                <Image
-                  alt={`photo ${index + 2}`}
-                  fill
-                  className="object-cover w-full h-full rounded-md sm:rounded-xl "
-                  src={p || item.featuredImage || ""}
-                  sizes="400px"
-                />
-              </div>
+     {PHOTOS.filter((_, i) => i >= 1 && i < 4).map((p: string, index: number) => (
+      <div
+       key={index}
+       className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 2 ? "block" : ""}`}
+      >
+       <div className="aspect-w-4 aspect-h-3">
+        <Image
+         alt={`photo ${index + 2}`}
+         fill
+         className="object-cover w-full h-full rounded-md sm:rounded-xl "
+         src={p || item.featuredImage || ""}
+         sizes="400px"
+        />
+       </div>
 
-              <div
-                className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
-                onClick={handleOpenModalImageGallery}
-              />
-            </div>
-          ))}
+       <div
+        className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
+        onClick={handleOpenModalImageGallery}
+       />
+      </div>
+     ))}
 
-          <div
-            className="absolute hidden md:flex md:items-center md:justify-center left-3 bottom-3 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-500 cursor-pointer hover:bg-neutral-200 z-10"
-            onClick={handleOpenModalImageGallery}
-          >
-            <Squares2X2Icon className="h-5 w-5" />
-            <span className="ml-2 text-neutral-800 text-sm font-medium">Show all photos</span>
-          </div>
-        </div>
-      </header>
-
-      <main className="relative z-10 mt-11 flex flex-col lg:flex-row ">
-        <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:pr-10 lg:space-y-10">
-          <div className="listingSection__wrap !space-y-6">
-            <div className="flex justify-between items-center">
-              <Badge color="pink" name={item.listingCategory?.name || "Tour"} />
-              <LikeSaveBtns />
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">{item.title}</h2>
-
-            <div className="flex items-center space-x-4">
-              <StartRating />
-              <span>·</span>
-              <span>
-                <i className="las la-map-marker-alt"></i>
-                <span className="ml-1"> {item.address}</span>
-              </span>
-            </div>
-
-            <div className="flex items-center">
-              <Avatar hasChecked sizeClass="h-10 w-10" radius="rounded-full" />
-              <span className="ml-2.5 text-neutral-500 dark:text-neutral-400">
-                Hosted by <span className="text-neutral-900 dark:text-neutral-200 font-medium">{item.author?.displayName || item.author?.name || "Host"}</span>
-              </span>
-            </div>
-          </div>
-
-          <div className="listingSection__wrap">
-            <h2 className="text-2xl font-semibold">Experiences descriptions</h2>
-            <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-            <div className="text-neutral-6000 dark:text-neutral-300">
-              <p>{item.description || item.content || "No description provided."}</p>
-            </div>
-          </div>
-
-          <SectionDateRange />
-
-          <div className="listingSection__wrap">
-            <h2 className="text-2xl font-semibold">Host Information</h2>
-            <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-            <div className="flex items-center space-x-4">
-              <Avatar hasChecked sizeClass="h-14 w-14" radius="rounded-full" />
-              <div>
-                <a className="block text-xl font-medium" href="##">{item.author?.displayName || item.author?.name || "Host"}</a>
-                <div className="mt-1.5 flex items-center text-sm text-neutral-500 dark:text-neutral-400">
-                  <StartRating />
-                  <span className="mx-2">·</span>
-                  <span> {item.author?.places || 0} places</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="listingSection__wrap">
-            <h2 className="text-2xl font-semibold">Reviews</h2>
-            <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-            <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
-              <CommentListing className="py-8" />
-              <CommentListing className="py-8" />
-            </div>
-          </div>
-        </div>
-
-        <div className="hidden lg:block flex-grow mt-14 lg:mt-0">
-          <div className="sticky top-28">
-            <div className="listingSectionSidebar__wrap shadow-xl">
-              <div className="flex justify-between">
-                <span className="text-3xl font-semibold">
-                  {item.price || "$0"}
-                  <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/person</span>
-                </span>
-                <StartRating />
-              </div>
-
-              <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
-                <StayDatesRangeInput className="flex-1 z-[11]" />
-                <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
-                <GuestsInput className="flex-1" />
-              </form>
-
-              <div className="flex flex-col space-y-4">
-                <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
-                  <span>{item.price} x 3 adults</span>
-                  <span>$57</span>
-                </div>
-                <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
-                <div className="flex justify-between font-semibold">
-                  <span>Total</span>
-                  <span>$199</span>
-                </div>
-              </div>
-
-              <ButtonPrimary href={"/checkout"}>Reserve</ButtonPrimary>
-            </div>
-          </div>
-        </div>
-      </main>
+     <div
+      className="absolute hidden md:flex md:items-center md:justify-center left-3 bottom-3 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-500 cursor-pointer hover:bg-neutral-200 z-10"
+      onClick={handleOpenModalImageGallery}
+     >
+      <Squares2X2Icon className="h-5 w-5" />
+      <span className="ml-2 text-neutral-800 text-sm font-medium">Show all photos</span>
+     </div>
     </div>
-  );
+   </header>
+
+   <main className="relative z-10 mt-11 flex flex-col lg:flex-row ">
+    <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:pr-10 lg:space-y-10">
+     <div className="listingSection__wrap !space-y-6">
+      <div className="flex justify-between items-center">
+       <Badge color="pink" name={item.listingCategory?.name || "Tour"} />
+       <LikeSaveBtns />
+      </div>
+
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">{item.title}</h2>
+
+      <div className="flex items-center space-x-4">
+       <StartRating />
+       <span>·</span>
+       <span>
+        <i className="las la-map-marker-alt"></i>
+        <span className="ml-1"> {item.address}</span>
+       </span>
+      </div>
+
+      <div className="flex items-center">
+       <Avatar hasChecked sizeClass="h-10 w-10" radius="rounded-full" />
+       <span className="ml-2.5 text-neutral-500 dark:text-neutral-400">
+        Hosted by <span className="text-neutral-900 dark:text-neutral-200 font-medium">{item.author?.displayName || item.author?.name || "Host"}</span>
+       </span>
+      </div>
+     </div>
+
+     <div className="listingSection__wrap">
+      <h2 className="text-2xl font-semibold">Experiences descriptions</h2>
+      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+      <div className="text-neutral-6000 dark:text-neutral-300">
+       <p>{item.description || item.content || "No description provided."}</p>
+      </div>
+     </div>
+
+     <SectionDateRange />
+
+                    {/* Host Information removed as requested */}
+
+     <div className="listingSection__wrap">
+      <h2 className="text-2xl font-semibold">Reviews</h2>
+      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+      <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
+       <CommentListing className="py-8" />
+       <CommentListing className="py-8" />
+      </div>
+     </div>
+    </div>
+
+    <div className="hidden lg:block flex-grow mt-14 lg:mt-0">
+     <div className="sticky top-28">
+      <div className="listingSectionSidebar__wrap shadow-xl">
+       <div className="flex justify-between">
+        <span className="text-3xl font-semibold">
+         {item.price || "$0"}
+         <span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/person</span>
+        </span>
+        <StartRating />
+       </div>
+
+       <form className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-3xl ">
+        <StayDatesRangeInput className="flex-1 z-[11]" />
+        <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
+        <GuestsInput className="flex-1" />
+       </form>
+
+       <div className="flex flex-col space-y-4">
+        <div className="flex justify-between text-neutral-6000 dark:text-neutral-300">
+         <span>{item.price} x 3 adults</span>
+         <span>$57</span>
+        </div>
+        <div className="border-b border-neutral-200 dark:border-neutral-700"></div>
+        <div className="flex justify-between font-semibold">
+         <span>Total</span>
+         <span>$199</span>
+        </div>
+       </div>
+
+       <ButtonPrimary href={"/checkout"}>Reserve</ButtonPrimary>
+      </div>
+     </div>
+    </div>
+   </main>
+  </div>
+ );
 };
 
 export default ListingExperiencesDetailPageDynamic;

@@ -6,6 +6,7 @@
     "href": "/listing-experiences-detail/b1a7f6e2-1d2e-4c9f-9a2b-111111111111",
     "listingCategoryId": 4,
     "title": "Tour de Alfama com guia local",
+    "description": "Lisbon is not just a city to be seen — it’s meant to be felt. On this private Alfama tour, everything is adapted to you: your time, your interests, and your pace. With a local guide, you go beyond the tourist routes and discover the real Lisbon — winding lanes, soulful Fado corners, and viewpoints over the Tagus. All aboard 100% electric tuk-tuks, silent and comfortable, perfect for Lisbon’s hills. Want to stop for a ginjinha or a hidden spot? Just say the word. The tour is yours.",
     "featuredImage": "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80"
@@ -20,7 +21,10 @@
     "maxGuests": 15,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.7139, "lng": -9.1394 }
+    "map": {
+      "lat": 38.7139,
+      "lng": -9.1394
+    }
   },
   {
     "id": "b2c8f7e3-2e3f-4d9a-9b3c-222222222222",
@@ -29,6 +33,7 @@
     "href": "/listing-experiences-detail/b2c8f7e3-2e3f-4d9a-9b3c-222222222222",
     "listingCategoryId": 4,
     "title": "Tour Chiado & Bairro Alto",
+    "description": "Lisbon is meant to be felt, and Chiado & Bairro Alto are best explored your way. On this private tour, everything adapts to you: your pace, your interests, your time. With a local guide, you dive into literary cafes, boutiques, and bohemian streets, then pause at viewpoints over the Tagus. All aboard 100% electric tuk-tuks, silent and comfortable. Want extra time for photos or a viewpoint stop? Just say the word. The tour is yours.",
     "featuredImage": "https://images.unsplash.com/photo-1504660350434-0a6f0b1b2f2d?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1504660350434-0a6f0b1b2f2d?auto=format&fit=crop&w=1200&q=80"
@@ -43,7 +48,10 @@
     "maxGuests": 15,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.7167, "lng": -9.1425 }
+    "map": {
+      "lat": 38.7167,
+      "lng": -9.1425
+    }
   },
   {
     "id": "b3d9f8e4-3f4g-5e0b-0c4d-333333333333",
@@ -52,6 +60,7 @@
     "href": "/listing-experiences-detail/b3d9f8e4-3f4g-5e0b-0c4d-333333333333",
     "listingCategoryId": 4,
     "title": "Tour Belém",
+    "description": "Belém is more than monuments — it’s a story, and we tell it in your rhythm. On this private tour, everything is adapted to you: your time, your interests, and your pace. With a local guide, you visit Jerónimos Monastery, Belém Tower, and the Monument to the Discoveries, with time for photos by the Tagus and a fresh pastel. Ride in a silent, 100% electric tuk-tuk built for comfort. Want to pause longer or explore a hidden corner? Just say the word.",
     "featuredImage": "https://images.unsplash.com/photo-1526481280698-7b0852f4d9d2?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1526481280698-7b0852f4d9d2?auto=format&fit=crop&w=1200&q=80"
@@ -66,7 +75,10 @@
     "maxGuests": 15,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.6979, "lng": -9.2063 }
+    "map": {
+      "lat": 38.6979,
+      "lng": -9.2063
+    }
   },
   {
     "id": "b4e0f9e5-4g5h-6f1c-1d5e-444444444444",
@@ -75,6 +87,7 @@
     "href": "/listing-experiences-detail/b4e0f9e5-4g5h-6f1c-1d5e-444444444444",
     "listingCategoryId": 4,
     "title": "Lisbon full day",
+    "description": "This full-day Lisbon experience is designed around you. With a local guide and a private, 100% electric tuk-tuk, we adapt the route to your pace while covering the city’s essential neighborhoods — Alfama, Belém, and the center — plus the viewpoints you love most. Short on time or want a slower rhythm? We adjust as we go. Want extra photo stops or more viewpoint time? Just say the word. The tour is yours.",
     "featuredImage": "https://images.unsplash.com/photo-1505765056671-3c0b7a6f3a2a?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1505765056671-3c0b7a6f3a2a?auto=format&fit=crop&w=1200&q=80"
@@ -89,7 +102,10 @@
     "maxGuests": 12,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.7223, "lng": -9.1393 }
+    "map": {
+      "lat": 38.7223,
+      "lng": -9.1393
+    }
   },
   {
     "id": "b5f1g0e6-5h6i-7g2d-2e6f-555555555555",
@@ -98,6 +114,7 @@
     "href": "/listing-experiences-detail/b5f1g0e6-5h6i-7g2d-2e6f-555555555555",
     "listingCategoryId": 4,
     "title": "Miradouros de Lisboa – Viewpoints Tour",
+    "description": "Lisbon’s miradouros are meant to be felt, not rushed. On this private viewpoints tour, everything adapts to you: your pace, your light, your favorite views. With a local guide, you discover iconic lookouts and quieter spots over the Tagus, riding in a silent, 100% electric tuk-tuk. Want extra time for photos or a hidden panorama? Just say the word. The tour is yours.",
     "featuredImage": "https://images.unsplash.com/photo-1505765056671-3c0b7a6f3a2a?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1505765056671-3c0b7a6f3a2a?auto=format&fit=crop&w=1200&q=80"
@@ -112,7 +129,10 @@
     "maxGuests": 15,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.7165, "lng": -9.1390 }
+    "map": {
+      "lat": 38.7165,
+      "lng": -9.1390
+    }
   },
   {
     "id": "b6g2h1e7-6i7j-8h3e-3f7g-666666666666",
@@ -121,6 +141,7 @@
     "href": "/listing-experiences-detail/b6g2h1e7-6i7j-8h3e-3f7g-666666666666",
     "listingCategoryId": 4,
     "title": "Magical Christmas Lights Tour in Lisbon",
+    "description": "Lisbon’s holiday lights are at their best when you set the pace. On this private Christmas tour, everything is adapted to you: your time, your interests, and your rhythm. With a local guide, you glide through Baixa, Chiado, and Praça do Comércio in a silent, 100% electric tuk-tuk, stopping for photos and the best light. Want to linger at a market or find the perfect glow? Just say the word.",
     "featuredImage": "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?auto=format&fit=crop&w=1200&q=80"
@@ -135,7 +156,10 @@
     "maxGuests": 15,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.7223, "lng": -9.1393 }
+    "map": {
+      "lat": 38.7223,
+      "lng": -9.1393
+    }
   },
   {
     "id": "b7h3i2e8-7j8k-9i4f-4g8h-777777777777",
@@ -144,6 +168,7 @@
     "href": "/listing-experiences-detail/b7h3i2e8-7j8k-9i4f-4g8h-777777777777",
     "listingCategoryId": 2,
     "title": "Sintra e Cascais departing from Lisboa",
+    "description": "Sintra and Cascais are a day to be felt, not rushed. On this private tour, everything adapts to you: your time, your interests, and your pace. With a local guide, you explore palaces, gardens, and coastal viewpoints, with room for photos and quiet moments. Travel in comfort with a 100% electric tuk-tuk and tailored stops along the way. Want to linger or change the route? Just say the word. The tour is yours.",
     "featuredImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80"
@@ -158,7 +183,10 @@
     "maxGuests": 12,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 38.7223, "lng": -9.1393 }
+    "map": {
+      "lat": 38.7223,
+      "lng": -9.1393
+    }
   },
   {
     "id": "b8i4j3e9-8k9l-0j5g-5h9i-888888888888",
@@ -167,6 +195,7 @@
     "href": "/listing-experiences-detail/b8i4j3e9-8k9l-0j5g-5h9i-888888888888",
     "listingCategoryId": 2,
     "title": "Fatima, Batalha, Nazare and Obidos",
+    "description": "This journey through Fátima, Batalha, Nazaré, and Óbidos is designed around you. On a private tour with a local guide, everything adapts to your pace and interests — time for reflection at the sanctuary, longer stops by the ocean, or a slow walk through medieval streets. Ride comfortably in a silent, 100% electric tuk-tuk and shape the day as you go. Want to pause or explore a hidden spot? Just say the word.",
     "featuredImage": "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80",
     "galleryImgs": [
       "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1200&q=80"
@@ -181,6 +210,9 @@
     "maxGuests": 12,
     "saleOff": null,
     "isAds": null,
-    "map": { "lat": 39.3999, "lng": -8.2245 }
+    "map": {
+      "lat": 39.3999,
+      "lng": -8.2245
+    }
   }
 ]
