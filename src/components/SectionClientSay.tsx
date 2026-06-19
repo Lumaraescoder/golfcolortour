@@ -25,24 +25,24 @@ export interface SectionClientSayProps {
 const DEMO_DATA = [
   {
     id: 1,
-    clientName: "Tiana Abie",
-    clientAddress: "Malaysia",
+    clientName: "John Silva",
+    clientAddress: "Lisbon, PT",
     content:
-      "This place is exactly like the picture posted on Chisfis. Great service, we had a great stay!",
+      "Excellent Alfama tour! The guide knew every story and hidden corner. Highly recommend for anyone who wants to experience the city and hear authentic fado. (Google Review)",
   },
   {
     id: 2,
-    clientName: "Lennie Swiffan",
-    clientAddress: "London",
+    clientName: "Anna Costa",
+    clientAddress: "Lisbon, PT",
     content:
-      "This place is exactly like the picture posted on Chisfis. Great service, we had a great stay!",
+      "Wonderful Belém tour — monasteries, pastries, and monuments. Very well organized with detailed explanations. 5 stars on Google!",
   },
   {
     id: 3,
-    clientName: "Berta Emili",
-    clientAddress: "Tokyo",
+    clientName: "Carlos Mendes",
+    clientAddress: "Portugal",
     content:
-      "This place is exactly like the picture posted on Chisfis. Great service, we had a great stay!",
+      "Comprehensive Lisbon tour (Alfama and Belém). Professional itinerary, great time management, and excellent restaurant recommendations. Great experience (Google).",
   },
 ];
 
@@ -117,8 +117,8 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
 
   return (
     <div className={`nc-SectionClientSay relative ${className} `}>
-      <Heading desc="Let's see what people think of Chisfis" isCenter>
-        Good news from far away
+      <Heading desc="Let's see what people think of Lisbon mates" isCenter>
+        Our Google Reviews
       </Heading>
       <div className="relative md:mb-16 max-w-2xl mx-auto">
         {renderBg()}
@@ -173,9 +173,8 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
               <div className="mt-10 flex items-center justify-center space-x-2">
                 {data.map((item, i) => (
                   <button
-                    className={`w-2 h-2 rounded-full ${
-                      i === index ? "bg-black/70" : "bg-black/10 "
-                    }`}
+                    className={`w-2 h-2 rounded-full ${i === index ? "bg-black/70" : "bg-black/10 "
+                      }`}
                     onClick={() => changeItemId(i)}
                     key={i}
                   />

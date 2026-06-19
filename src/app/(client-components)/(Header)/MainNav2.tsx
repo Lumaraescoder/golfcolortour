@@ -3,7 +3,6 @@ import Logo from "@/shared/Logo";
 import MenuBar from "@/shared/MenuBar";
 import LangDropdown from "./LangDropdown";
 import AvatarDropdown from "./AvatarDropdown";
-import HeroSearchForm2MobileFactory from "../(HeroSearchForm2Mobile)/HeroSearchForm2MobileFactory";
 import Link from "next/link";
 import { Route } from "@/routers/types";
 import { usePathname } from "next/navigation";
@@ -18,7 +17,7 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
     <div className={`MainNav2 relative z-10 ${className}`}>
       <div className="px-4 h-20 lg:container flex justify-between items-center">
         <div className="hidden md:flex items-center space-x-6 flex-1">
-          <Logo className="w-28 self-center" />
+          <Logo className="w-32 self-center" />
           <nav className="hidden lg:flex space-x-6 text-neutral-700 dark:text-neutral-100">
             <Link href="/" className="hover:text-black">Home</Link>
             <Link href="/listing-experiences" className="hover:text-black">Tours</Link>
@@ -29,7 +28,7 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
         </div>
 
         <div className="self-center lg:hidden flex-[3] max-w-lg !mx-auto md:px-3">
-          <HeroSearchForm2MobileFactory />
+          <Logo className="w-32 mx-auto" />
         </div>
 
         <div className="hidden md:flex flex-shrink-0 justify-end flex-1 lg:flex-none text-neutral-700 dark:text-neutral-100 items-center">

@@ -23,7 +23,7 @@
     "price": "From €30",
     "duration": "1h",
     "saleOff": null,
-    "isAds": null,
+    "isAds": false,
     "map": {
       "lat": 38.711,
       "lng": -9.129

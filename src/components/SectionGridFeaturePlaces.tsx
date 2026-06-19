@@ -103,7 +103,22 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
     }
 
     const img = GUIDES_IMAGES[idx % GUIDES_IMAGES.length];
-    const newData = { ...stay, galleryImgs: [img] } as StayDataType;
+    const isAlfama =
+      img === panteao_alfama ||
+      img === lucaspanteaoalfama ||
+      img === gracaalfama ||
+      img === miradouroalfama ||
+      img === igrejaalfama;
+
+    const newData = {
+      ...stay,
+      galleryImgs: [img],
+      isAds: isAlfama ? false : stay.isAds,
+      listingCategory: {
+        ...(stay.listingCategory || {}),
+        name: isAlfama ? "" : (stay.listingCategory?.name || ""),
+      },
+    } as StayDataType;
     return <CardName key={stay.id} data={newData} />;
   };
 
