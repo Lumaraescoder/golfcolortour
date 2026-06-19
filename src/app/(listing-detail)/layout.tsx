@@ -7,9 +7,7 @@ import SectionSubscribe2 from "@/components/SectionSubscribe2";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { ReactNode } from "react";
 import MobileFooterSticky from "./(components)/MobileFooterSticky";
-import { imageGallery as listingStayImageGallery } from "./listing-stay-detail/constant";
-import { imageGallery as listingCarImageGallery } from "./listing-car-detail/constant";
-import { imageGallery as listingExperienceImageGallery } from "./listing-experiences-detail/constant";
+import { DEMO_STAY_LISTINGS, DEMO_EXPERIENCES_LISTINGS, DEMO_CAR_LISTINGS } from "@/data/listings";
 import { Route } from "next";
 
 const DetailtLayout = ({ children }: { children: ReactNode }) => {
@@ -25,14 +23,33 @@ const DetailtLayout = ({ children }: { children: ReactNode }) => {
   };
 
   const getImageGalleryListing = () => {
+    const segments = thisPathname?.split("/").filter(Boolean) || [];
+    const last = segments[segments.length - 1] || "";
+
+    const findItem = (all: any[]) => {
+      // last may contain id or id-slug
+      const id = last;
+      return all.find((it) => {
+        const href = (it.href || "").toString();
+        if (!id) return false;
+        if (href.endsWith(`/${id}`)) return true;
+        if (href.includes(`/${id}-`)) return true;
+        if (href.includes(`/${id}`)) return true;
+        return false;
+      });
+    };
+
     if (thisPathname?.includes("/listing-stay-detail")) {
-      return listingStayImageGallery;
+      const item = findItem(DEMO_STAY_LISTINGS as any);
+      return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
     }
     if (thisPathname?.includes("/listing-car-detail")) {
-      return listingCarImageGallery;
+      const item = findItem(DEMO_CAR_LISTINGS as any);
+      return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
     }
     if (thisPathname?.includes("/listing-experiences-detail")) {
-      return listingExperienceImageGallery;
+      const item = findItem(DEMO_EXPERIENCES_LISTINGS as any);
+      return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
     }
 
     return [];

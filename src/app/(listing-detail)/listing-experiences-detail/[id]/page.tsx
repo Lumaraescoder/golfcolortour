@@ -27,7 +27,17 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
  const router = useRouter();
 
  const all = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS];
- const item = all.find((it) => (it.href || "").endsWith(`/${id}`));
+ const item = all.find((it) => {
+  const href = (it.href || "").toString();
+  if (!id) return false;
+  // Exact match for slug or id at the end
+  if (href.endsWith(`/${id}`)) return true;
+  // If id is the short id (like 'id1') but href contains a slug like '/id1-title', match that too
+  if (href.includes(`/${id}-`)) return true;
+  // Also allow href that simply contains the id segment
+  if (href.includes(`/${id}`)) return true;
+  return false;
+ });
 
  const handleOpenModalImageGallery = () => {
   router.push(`${thisPathname}/?modal=PHOTO_TOUR_SCROLLABLE` as Route);
@@ -126,7 +136,7 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
 
      <SectionDateRange />
 
-                    {/* Host Information removed as requested */}
+     {/* Host Information removed as requested */}
 
      <div className="listingSection__wrap">
       <h2 className="text-2xl font-semibold">Reviews</h2>

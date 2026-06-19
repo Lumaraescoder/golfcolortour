@@ -20,11 +20,11 @@ import GuestsInput from "./GuestsInput";
 import SectionDateRange from "../SectionDateRange";
 import { Route } from "next";
 
-export interface ListingExperiencesDetailPageProps {}
+export interface ListingExperiencesDetailPageProps { }
 
 const ListingExperiencesDetailPage: FC<
   ListingExperiencesDetailPageProps
-> = ({}) => {
+> = ({ }) => {
   const thisPathname = usePathname();
   const router = useRouter();
 
@@ -347,9 +347,8 @@ const ListingExperiencesDetailPage: FC<
           {PHOTOS.filter((_, i) => i >= 1 && i < 4).map((item, index) => (
             <div
               key={index}
-              className={`relative rounded-md sm:rounded-xl overflow-hidden ${
-                index >= 2 ? "block" : ""
-              }`}
+              className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 2 ? "block" : ""
+                }`}
             >
               <div className="aspect-w-4 aspect-h-3">
                 <Image

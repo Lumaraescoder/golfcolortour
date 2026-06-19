@@ -8,43 +8,12 @@ import { FC, Fragment } from "react";
 import { headerCurrency } from "./CurrencyDropdown";
 
 export const headerLanguage = [
-  {
-    id: "English",
-    name: "English",
-    description: "United State",
-    href: "##",
-    active: true,
-  },
-  {
-    id: "Vietnamese",
-    name: "Vietnamese",
-    description: "Vietnamese",
-    href: "##",
-  },
-  {
-    id: "Francais",
-    name: "Francais",
-    description: "Belgique",
-    href: "##",
-  },
-  {
-    id: "Francais",
-    name: "Francais",
-    description: "Canada",
-    href: "##",
-  },
-  {
-    id: "Francais",
-    name: "Francais",
-    description: "Belgique",
-    href: "##",
-  },
-  {
-    id: "Francais",
-    name: "Francais",
-    description: "Canada",
-    href: "##",
-  },
+  { id: "English", name: "English", description: "English", href: "##", active: true },
+  { id: "Português", name: "Português", description: "Português", href: "##" },
+  { id: "Español", name: "Español", description: "Español", href: "##" },
+  { id: "Français", name: "Français", description: "Français", href: "##" },
+  { id: "Deutsch", name: "Deutsch", description: "Deutsch", href: "##" },
+  { id: "Italiano", name: "Italiano", description: "Italiano", href: "##" },
 ];
 
 interface LangDropdownProps {
