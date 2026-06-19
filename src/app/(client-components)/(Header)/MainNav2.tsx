@@ -6,12 +6,14 @@ import AvatarDropdown from "./AvatarDropdown";
 import HeroSearchForm2MobileFactory from "../(HeroSearchForm2Mobile)/HeroSearchForm2MobileFactory";
 import Link from "next/link";
 import { Route } from "@/routers/types";
+import { usePathname } from "next/navigation";
 
 export interface MainNav2Props {
   className?: string;
 }
 
 const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
+  const pathname = usePathname();
   return (
     <div className={`MainNav2 relative z-10 ${className}`}>
       <div className="px-4 h-20 lg:container flex justify-between items-center">
@@ -33,10 +35,10 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
         <div className="hidden md:flex flex-shrink-0 justify-end flex-1 lg:flex-none text-neutral-700 dark:text-neutral-100 items-center">
           <div className="hidden lg:flex items-center space-x-3">
             <LangDropdown />
-            <AvatarDropdown />
+            {pathname !== "/" && <AvatarDropdown />}
           </div>
           <div className="flex lg:hidden items-center">
-            <AvatarDropdown />
+            {pathname !== "/" && <AvatarDropdown />}
             <MenuBar />
           </div>
         </div>

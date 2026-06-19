@@ -20,10 +20,10 @@ export interface SectionGridFeaturePropertyProps {
 const SectionGridFeatureProperty: FC<SectionGridFeaturePropertyProps> = ({
   stayListings = DEMO_DATA,
   gridClass = "",
-  heading = "Featured places to stay",
-  subHeading = "Popular places to stay that Chisfis recommends for you",
+  heading = "Featured tours",
+  subHeading,
   headingIsCenter,
-  tabs = ["New York", "Tokyo", "Paris", "London"],
+  tabs = [],
 }) => {
   const renderCard = (stay: StayDataType, index: number) => {
     return <PropertyCardH key={index} className="h-full" data={stay} />;
@@ -31,19 +31,14 @@ const SectionGridFeatureProperty: FC<SectionGridFeaturePropertyProps> = ({
 
   return (
     <div className="nc-SectionGridFeatureProperty relative">
-      <HeaderFilter
-        tabActive={"New York"}
-        subHeading={subHeading}
-        tabs={tabs}
-        heading={heading}
-      />
+      <HeaderFilter tabActive={"New York"} subHeading={subHeading} tabs={tabs} heading={heading} showViewAll={false} />
       <div
         className={`grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-1 xl:grid-cols-2 ${gridClass}`}
       >
         {stayListings.map(renderCard)}
       </div>
       <div className="flex mt-16 justify-center items-center">
-        <ButtonPrimary loading>Show me more</ButtonPrimary>
+        {/* Show me more removed as requested */}
       </div>
     </div>
   );
