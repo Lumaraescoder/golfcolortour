@@ -119,9 +119,9 @@ export const TOUR_IMAGES_MAP: Record<string, any> = {
  "fatima/imgi_54_fatima].jpg": fatimaC,
  "imgi54fatima.jpg": fatimaC,
  "fatima/imgi54fatima.jpg": fatimaC,
-	// fallback for nazare reference in JSON
-	"nazare.jpeg": fatimaC,
-	"fatima/nazare.jpeg": fatimaC,
+ // fallback for nazare reference in JSON
+ "nazare.jpeg": fatimaC,
+ "fatima/nazare.jpeg": fatimaC,
  // sintra
  "imgi_39_image.jpeg": sintra1,
  "sintra/imgi_39_image.jpeg": sintra1,

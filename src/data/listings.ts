@@ -107,19 +107,19 @@ const DEMO_EXPERIENCES_LISTINGS = __experiencesListing.map(
       ? (structured as any[]).map((g) => ({ src: g.image || g.src || g, alt: g.alt || "" }))
       : Array.isArray(post.galleryImgs)
         ? (post.galleryImgs as any[]).map((g) => {
-            if (typeof g === "string") {
-              const parts = g.split("/");
-              const filename = parts[parts.length - 1];
-              const folder = parts.length > 1 ? parts[parts.length - 2] : null;
-              if (folder && TOUR_IMAGES_MAP[`${folder}/${filename}`]) {
-                return { src: TOUR_IMAGES_MAP[`${folder}/${filename}`], alt: "" };
-              }
-              if (TOUR_IMAGES_MAP[filename]) {
-                return { src: TOUR_IMAGES_MAP[filename], alt: "" };
-              }
+          if (typeof g === "string") {
+            const parts = g.split("/");
+            const filename = parts[parts.length - 1];
+            const folder = parts.length > 1 ? parts[parts.length - 2] : null;
+            if (folder && TOUR_IMAGES_MAP[`${folder}/${filename}`]) {
+              return { src: TOUR_IMAGES_MAP[`${folder}/${filename}`], alt: "" };
             }
-            return { src: g, alt: "" };
-          })
+            if (TOUR_IMAGES_MAP[filename]) {
+              return { src: TOUR_IMAGES_MAP[filename], alt: "" };
+            }
+          }
+          return { src: g, alt: "" };
+        })
         : [];
 
     const featured = (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage))
