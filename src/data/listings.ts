@@ -59,35 +59,39 @@ const DEMO_STAY_LISTINGS = __stayListing.map((post, index): StayDataType => {
   const galleryObjs = structured
     ? (structured as any[]).map((g) => ({ src: g.image || g.src || g, alt: g.alt || "" }))
     : Array.isArray(post.galleryImgs)
-    ? (post.galleryImgs as any[]).map((g) => {
+      ? (post.galleryImgs as any[]).map((g) => {
         // try to resolve legacy string path to imported image
         if (typeof g === "string") {
           const parts = g.split("/");
           const filename = parts[parts.length - 1];
+          const folder = parts.length > 1 ? parts[parts.length - 2] : null;
+          if (folder && TOUR_IMAGES_MAP[`${folder}/${filename}`]) {
+            return { src: TOUR_IMAGES_MAP[`${folder}/${filename}`], alt: "" };
+          }
           if (TOUR_IMAGES_MAP[filename]) {
             return { src: TOUR_IMAGES_MAP[filename], alt: "" };
           }
         }
         return { src: g, alt: "" };
       })
-    : [];
+      : [];
 
   const featured = (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage))
     ? post.featuredImage
     : undefined;
 
-    return {
-      ...post,
-      id: `stayListing_${index}_`,
-      featuredImage: featured,
-      // canonical gallery of objects
-      gallery: galleryObjs,
-      saleOff: !index ? "-20% today" : post.saleOff,
-      isAds: !index ? true : post.isAds,
-      author: DEMO_AUTHORS.filter((user) => user.id === post.authorId)[0],
-      listingCategory: category,
-      href: post.href as Route,
-    };
+  return {
+    ...post,
+    id: `stayListing_${index}_`,
+    featuredImage: featured,
+    // canonical gallery of objects
+    gallery: galleryObjs,
+    saleOff: !index ? "-20% today" : post.saleOff,
+    isAds: !index ? true : post.isAds,
+    author: DEMO_AUTHORS.filter((user) => user.id === post.authorId)[0],
+    listingCategory: category,
+    href: post.href as Route,
+  };
 });
 
 const DEMO_EXPERIENCES_LISTINGS = __experiencesListing.map(
@@ -102,8 +106,21 @@ const DEMO_EXPERIENCES_LISTINGS = __experiencesListing.map(
     const galleryObjs = structured
       ? (structured as any[]).map((g) => ({ src: g.image || g.src || g, alt: g.alt || "" }))
       : Array.isArray(post.galleryImgs)
-      ? (post.galleryImgs as any[]).map((g) => ({ src: g, alt: "" }))
-      : [];
+        ? (post.galleryImgs as any[]).map((g) => {
+            if (typeof g === "string") {
+              const parts = g.split("/");
+              const filename = parts[parts.length - 1];
+              const folder = parts.length > 1 ? parts[parts.length - 2] : null;
+              if (folder && TOUR_IMAGES_MAP[`${folder}/${filename}`]) {
+                return { src: TOUR_IMAGES_MAP[`${folder}/${filename}`], alt: "" };
+              }
+              if (TOUR_IMAGES_MAP[filename]) {
+                return { src: TOUR_IMAGES_MAP[filename], alt: "" };
+              }
+            }
+            return { src: g, alt: "" };
+          })
+        : [];
 
     const featured = (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage))
       ? post.featuredImage

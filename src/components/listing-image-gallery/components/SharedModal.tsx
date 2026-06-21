@@ -206,8 +206,8 @@ export default function SharedModal({
                       onClick={() => changePhotoId(id)}
                       key={id}
                       className={`${id === index
-                          ? "z-20 rounded-md shadow shadow-black/50"
-                          : "z-10"
+                        ? "z-20 rounded-md shadow shadow-black/50"
+                        : "z-10"
                         } ${id === 0 ? "rounded-l-md" : ""} ${id === images.length - 1 ? "rounded-r-md" : ""
                         } relative inline-block w-full shrink-0 transform-gpu overflow-hidden focus:outline-none`}
                     >
@@ -216,8 +216,8 @@ export default function SharedModal({
                         width={180}
                         height={120}
                         className={`${id === index
-                            ? "brightness-110 hover:brightness-110"
-                            : "brightness-50 contrast-125 hover:brightness-75"
+                          ? "brightness-110 hover:brightness-110"
+                          : "brightness-50 contrast-125 hover:brightness-75"
                           } h-full transform object-cover transition`}
                         src={url || ""}
                       />

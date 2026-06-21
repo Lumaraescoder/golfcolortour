@@ -185,10 +185,9 @@
     "description": "Lisbon’s holiday lights are at their best when you set the pace. On this private Christmas tour, everything is adapted to you: your time, your interests, and your rhythm. With a local guide, you glide through Baixa, Chiado, and Praça do Comércio in a silent, 100% electric tuk-tuk, stopping for photos and the best light. Want to linger at a market or find the perfect glow? Just say the word.",
     "featuredImage": "https://images.pexels.com/photos/5191371/pexels-photo-5191371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     "galleryImgs": [
-      "/img/tourSingle/1/guias/linda2.jpeg",
-      "/img/tourSingle/1/guias/lindafoto.jpeg",
-      "/img/tourSingle/1/guias/pessoas.jpeg",
-      "/img/tourSingle/1/guias/pessoas notuk.jpeg"
+      "/img/tourSingle/1/guias/christimas/imgi_17_image.jpeg",
+      "/img/tourSingle/1/guias/christimas/imgi_28_image.jpeg",
+      "/img/tourSingle/1/guias/christimas/imgi_53_luzes-de-natal-no-chiado-@playstationpt-_4-1024x683.jpg"
     ],
     "commentCount": 98,
     "viewCount": 980,
@@ -215,10 +214,9 @@
     "description": "Sintra and Cascais are a day to be felt, not rushed. On this private tour, everything adapts to you: your time, your interests, and your pace. With a local guide, you explore palaces, gardens, and coastal viewpoints, with room for photos and quiet moments. Travel in comfort with a 100% electric tuk-tuk and tailored stops along the way. Want to linger or change the route? Just say the word. The tour is yours.",
     "featuredImage": "https://images.pexels.com/photos/5191371/pexels-photo-5191371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     "galleryImgs": [
-      "/img/tourSingle/1/guias/meninas.jpeg",
-      "/img/tourSingle/1/guias/lucaspanteaoalfama.jpeg",
-      "/img/tourSingle/1/guias/lucasebrasileiros.jpeg",
-      "/img/tourSingle/1/guias/lucaseospessoalchiado.jpeg"
+      "/img/tourSingle/1/guias/sintra/imgi_44_image.jpeg",
+      "/img/tourSingle/1/guias/sintra/imgi_53_poço.jpg",
+      "/img/tourSingle/1/guias/sintra/imgi_39_image.jpeg"
     ],
     "commentCount": 223,
     "viewCount": 2104,
@@ -244,12 +242,10 @@
     "title": "Fatima, Batalha, Nazare and Obidos",
     "description": "This journey through Fátima, Batalha, Nazaré, and Óbidos is designed around you. On a private tour with a local guide, everything adapts to your pace and interests — time for reflection at the sanctuary, longer stops by the ocean, or a slow walk through medieval streets. Ride comfortably in a silent, 100% electric tuk-tuk and shape the day as you go. Want to pause or explore a hidden spot? Just say the word.",
     "featuredImage": "https://images.pexels.com/photos/5191371/pexels-photo-5191371.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-    "gallery": [
-      {
-        "id": 1,
-        "image": "/img/tourSingle/1/guias/belem2.jpeg",
-        "alt": "Fatima tour"
-      }
+    "galleryImgs": [
+      "/img/tourSingle/1/guias/fatima/imgi54fatima.jpg",
+      "/img/tourSingle/1/guias/fatima/imgi2image.jpeg",
+      "/img/tourSingle/1/guias/fatima/nazare.jpeg"
     ],
     "commentCount": 178,
     "viewCount": 1742,
