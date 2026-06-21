@@ -47,7 +47,10 @@ const DetailtLayout = ({ children }: { children: ReactNode }) => {
       return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
     }
     if (thisPathname?.includes("/listing-experiences-detail")) {
-      const item = findItem(DEMO_EXPERIENCES_LISTINGS as any);
+      // try experiences first, then fallback to stay or cars if the URL id comes from those JSONs
+      let item = findItem(DEMO_EXPERIENCES_LISTINGS as any);
+      if (!item) item = findItem(DEMO_STAY_LISTINGS as any);
+      if (!item) item = findItem(DEMO_CAR_LISTINGS as any);
       return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
     }
 

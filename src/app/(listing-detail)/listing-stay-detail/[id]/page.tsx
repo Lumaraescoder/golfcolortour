@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ArrowRightIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
 import CommentListing from "@/components/CommentListing";
@@ -17,10 +17,12 @@ import LikeSaveBtns from "@/components/LikeSaveBtns";
 import Image from "next/image";
 import { usePathname, useRouter, useParams } from "next/navigation";
 import { Amenities_demos, PHOTOS } from "../constant";
+import { DEMO_STAY_LISTINGS } from "@/data/listings";
 import StayDatesRangeInput from "../StayDatesRangeInput";
 import GuestsInput from "../GuestsInput";
 import SectionDateRange from "../../SectionDateRange";
 import { Route } from "next";
+// Modal implemented inline for stay page (custom simple slider)
 
 export interface ListingStayDetailPageProps { }
 
@@ -34,6 +36,29 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({ }) => {
  const params = useParams();
  const listingId = params?.id;
 
+  // resolve gallery images for this listing (falls back to PHOTOS constant)
+  const findItem = (all: any[]) => {
+    const id = listingId;
+    return all.find((it) => {
+      const href = (it.href || "").toString();
+      if (!id) return false;
+      if (href.endsWith(`/${id}`)) return true;
+      if (href.includes(`/${id}-`)) return true;
+      if (href.includes(`/${id}`)) return true;
+      return false;
+    });
+  };
+
+  const dataItem = findItem(DEMO_STAY_LISTINGS as any) as any;
+  const gallerySourceRaw: any[] = (dataItem && Array.isArray(dataItem.galleryImgs) ? dataItem.galleryImgs : []) ;
+  const gallerySource = gallerySourceRaw.length ? gallerySourceRaw : PHOTOS;
+
+  const getSrc = (img: any) => {
+    if (!img) return "";
+    if (typeof img === "string") return img;
+    return (img as any).src || "";
+  };
+
  function closeModalAmenities() {
   setIsOpenModalAmenities(false);
  }
@@ -42,9 +67,33 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({ }) => {
   setIsOpenModalAmenities(true);
  }
 
- const handleOpenModalImageGallery = () => {
-  router.push(`${thisPathname}/?modal=PHOTO_TOUR_SCROLLABLE` as Route);
+ const [isOpenGallery, setIsOpenGallery] = useState(false);
+ const [galleryIndex, setGalleryIndex] = useState(0);
+
+ const openLocalGallery = (startIndex = 0) => {
+  setGalleryIndex(startIndex);
+  setIsOpenGallery(true);
  };
+
+ const closeLocalGallery = () => {
+  setIsOpenGallery(false);
+ };
+
+  // keyboard navigation for custom modal
+  useEffect(() => {
+    if (!isOpenGallery) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        setGalleryIndex((i) => Math.min(PHOTOS.length - 1, i + 1));
+      } else if (e.key === "ArrowLeft") {
+        setGalleryIndex((i) => Math.max(0, i - 1));
+      } else if (e.key === "Escape") {
+        setIsOpenGallery(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpenGallery]);
 
  const renderSection1 = () => {
   return (
@@ -465,10 +514,10 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({ }) => {
    {/*  HEADER */}
    <header className="rounded-md sm:rounded-xl">
     <div className="relative grid grid-cols-3 sm:grid-cols-4 gap-1 sm:gap-2">
-     <div
-      className="col-span-2 row-span-3 sm:row-span-2 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
-      onClick={handleOpenModalImageGallery}
-     >
+         <div
+           className="col-span-2 row-span-3 sm:row-span-2 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
+           onClick={() => openLocalGallery(0)}
+         >
       <Image
        fill
        className="object-cover rounded-md sm:rounded-xl"
@@ -478,34 +527,34 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({ }) => {
       />
       <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
      </div>
-     {PHOTOS.filter((_, i) => i >= 1 && i < 5).map((item, index) => (
+    {gallerySource.filter((_, i) => i >= 1 && i < 5).map((item, index) => (
       <div
        key={index}
        className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 3 ? "hidden sm:block" : ""
         }`}
       >
-       <div className="aspect-w-4 aspect-h-3 sm:aspect-w-6 sm:aspect-h-5">
-        <Image
-         fill
-         className="object-cover rounded-md sm:rounded-xl "
-         src={item || ""}
-         alt=""
-         sizes="400px"
-        />
-       </div>
+      <div className="aspect-w-4 aspect-h-3 sm:aspect-w-6 sm:aspect-h-5">
+    <Image
+     fill
+     className="object-cover rounded-md sm:rounded-xl "
+     src={getSrc(item) || ""}
+     alt=""
+     sizes="400px"
+    />
+         </div>
 
        {/* OVERLAY */}
-       <div
-        className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
-        onClick={handleOpenModalImageGallery}
-       />
+                <div
+                className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity cursor-pointer"
+                onClick={() => openLocalGallery(index + 1)}
+               />
       </div>
      ))}
 
-     <button
-      className="absolute hidden md:flex md:items-center md:justify-center left-3 bottom-3 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-500 hover:bg-neutral-200 z-10"
-      onClick={handleOpenModalImageGallery}
-     >
+    <button
+     className="absolute hidden md:flex md:items-center md:justify-center left-3 bottom-3 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-500 hover:bg-neutral-200 z-10"
+     onClick={() => openLocalGallery(0)}
+    >
       <Squares2X2Icon className="w-5 h-5" />
       <span className="ml-2 text-neutral-800 text-sm font-medium">
        Show all photos
@@ -513,6 +562,90 @@ const ListingStayDetailPage: FC<ListingStayDetailPageProps> = ({ }) => {
      </button>
     </div>
    </header>
+
+    {/* Simple custom modal: shows PHOTOS, next/prev, thumbnails, keyboard navigation */}
+    <Transition appear show={isOpenGallery} as={Fragment}>
+      <Dialog as="div" className="fixed inset-0 z-50" onClose={closeLocalGallery}>
+        <div className="min-h-screen px-4 text-center">
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-200"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-70" />
+          </Transition.Child>
+
+          <span className="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-200"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-150"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <div className="inline-block w-full max-w-5xl p-4 text-left align-middle transition-all transform">
+              <div className="relative bg-black rounded-md overflow-hidden">
+                <button
+                  className="absolute top-4 right-4 z-30 rounded-full bg-white/10 hover:bg-white/20 p-2 text-white"
+                  onClick={closeLocalGallery}
+                  aria-label="Close gallery"
+                >
+                  ✕
+                </button>
+
+                <div className="flex items-center justify-center h-[70vh]">
+                  <button
+                    className="absolute left-4 z-20 text-white bg-black/30 hover:bg-black/40 rounded-full p-2"
+                    onClick={() => setGalleryIndex((i) => Math.max(0, i - 1))}
+                    aria-label="Previous"
+                  >
+                    ‹
+                  </button>
+
+                  <div className="max-h-full max-w-full flex items-center justify-center">
+                    <Image
+                      src={getSrc(gallerySource[galleryIndex]) || ""}
+                      alt={`photo ${galleryIndex + 1}`}
+                      width={1280}
+                      height={800}
+                      className="object-contain max-h-[70vh]"
+                    />
+                  </div>
+
+                  <button
+                    className="absolute right-4 z-20 text-white bg-black/30 hover:bg-black/40 rounded-full p-2"
+                    onClick={() => setGalleryIndex((i) => Math.min(PHOTOS.length - 1, i + 1))}
+                    aria-label="Next"
+                  >
+                    ›
+                  </button>
+                </div>
+
+                {/* Thumbnails */}
+                <div className="flex gap-2 overflow-x-auto p-3 bg-black/60">
+                  {gallerySource.map((u, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setGalleryIndex(i)}
+                      className={`flex-none rounded-md overflow-hidden border-2 ${i === galleryIndex ? "border-white" : "border-transparent"}`}
+                    >
+                      <img src={getSrc(u)} alt={`thumb ${i + 1}`} className="h-20 object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Transition.Child>
+        </div>
+      </Dialog>
+    </Transition>
 
    {/* MAIN */}
    <main className=" relative z-10 mt-11 flex flex-col lg:flex-row ">

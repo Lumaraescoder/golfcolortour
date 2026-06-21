@@ -91,3 +91,23 @@ export const GUIDES_IMAGES_MAP: Record<string, any> = {
   "praçadocomercio.jpeg": pracadocomercio,
   "torrebelem.jpeg": torrebelem,
 };
+
+// Add normalized keys (remove diacritics and normalize spaces) so JSON can reference ASCII filenames
+const normalize = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+Object.keys(GUIDES_IMAGES_MAP).forEach((k) => {
+  const v = GUIDES_IMAGES_MAP[k];
+  const ascii = normalize(k);
+  if (ascii !== k && !GUIDES_IMAGES_MAP[ascii]) {
+    GUIDES_IMAGES_MAP[ascii] = v;
+  }
+  const asciiNoSpace = ascii.replace(/\s+/g, "");
+  if (asciiNoSpace !== k && !GUIDES_IMAGES_MAP[asciiNoSpace]) {
+    GUIDES_IMAGES_MAP[asciiNoSpace] = v;
+  }
+});

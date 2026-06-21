@@ -49,10 +49,19 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
   }
 
   const PHOTOS = item.galleryImgs || [];
+  // DEBUG: show galleryImgs content on page to help troubleshooting
+  // (remove this block after debugging)
+  const debugGallery = PHOTOS.map((p) => (typeof p === "string" ? p : (p as any)?.src || "[object]"));
+  console.log("DEBUG listing item:", item);
+  console.log("DEBUG PHOTOS:", debugGallery);
 
   return (
     <div className={` nc-ListingExperiencesDetailPage `}>
       <header className="rounded-md sm:rounded-xl">
+        <div className="p-4 bg-neutral-100 text-sm text-neutral-700">
+          <strong>Debug galleryImgs:</strong>
+          <pre className="whitespace-pre-wrap break-words">{JSON.stringify(debugGallery, null, 2)}</pre>
+        </div>
         <div className="relative grid grid-cols-4 gap-1 sm:gap-2">
           <div
             className="col-span-3 row-span-3 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"

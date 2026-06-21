@@ -58,7 +58,20 @@ export default function SharedModal({
     trackMouse: true,
   });
 
-  let currentImage = images ? images[index] : currentPhoto;
+  // Ensure we always have a currentImage (fallback to first image)
+  let currentImage = images && images.length ? images[index] : currentPhoto;
+  if ((!currentImage || currentImage === undefined) && images && images.length) {
+    const safeIndex = Math.max(0, Math.min(index, images.length - 1));
+    currentImage = images[safeIndex];
+  }
+
+  const currentImageUrl = (() => {
+    if (!currentImage) return "";
+    if (typeof currentImage.url === "string") return currentImage.url as string;
+    // StaticImageData has a `src` property
+    const maybe = (currentImage.url as any) || {};
+    return maybe.src || "";
+  })();
 
   return (
     <MotionConfig
@@ -85,7 +98,7 @@ export default function SharedModal({
                 className="absolute"
               >
                 <Image
-                  src={currentImage?.url || ""}
+                  src={currentImageUrl || ""}
                   width={navigation ? 1280 : 1920}
                   height={navigation ? 853 : 1280}
                   priority
@@ -128,7 +141,7 @@ export default function SharedModal({
               <div className="absolute top-0 right-0 flex items-center gap-2 p-3 text-white">
                 {navigation ? (
                   <a
-                    href={currentImage?.url}
+                    href={currentImageUrl}
                     className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
                     target="_blank"
                     title="Open fullsize version"
@@ -149,7 +162,7 @@ export default function SharedModal({
                 )}
                 <button
                   onClick={() =>
-                    downloadPhoto(currentImage?.url || "", `${index}.jpg`)
+                    downloadPhoto(currentImageUrl || "", `${index}.jpg`)
                   }
                   className="rounded-full bg-black/50 p-2 text-white/75 backdrop-blur-lg transition hover:bg-black/75 hover:text-white"
                   title="Download fullsize version"

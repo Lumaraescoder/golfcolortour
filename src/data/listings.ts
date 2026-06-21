@@ -153,7 +153,20 @@ const DEMO_EXPERIENCES_LISTINGS = __experiencesListing.map(
 
     const guideImgs = findGuideImagesForPost(post.title, post.href || "");
     const originalImgs = Array.isArray(post.galleryImgs) ? post.galleryImgs : [];
-    const mergedRaw = [...guideImgs, ...originalImgs].filter((v, i, a) => a.indexOf(v) === i);
+    // Resolve filename strings in experiences to imported images via GUIDES_IMAGES_MAP
+    const resolvedOriginalImgs = originalImgs.map((img) => {
+      if (typeof img === "string") {
+        if (/^https?:\/\//i.test(img)) return img;
+        const name = img.split("/").pop() || img;
+        if (GUIDES_IMAGES_MAP[name]) return GUIDES_IMAGES_MAP[name];
+        return img;
+      }
+      return img;
+    });
+    // If original gallery images are provided explicitly for the experience, prefer them.
+    // Otherwise fall back to guide images.
+    const sourceImgs = resolvedOriginalImgs.length ? resolvedOriginalImgs : guideImgs;
+    const mergedRaw = sourceImgs.filter((v, i, a) => a.indexOf(v) === i);
     const merged = mergedRaw.filter((img) => {
       if (typeof img === "string") {
         return !/^https?:\/\//i.test(img);

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FC, Fragment, useEffect, useRef } from "react";
 import Modal from "./components/Modal";
+import SharedModal from "./components/SharedModal";
 import type { ListingGalleryImage } from "./utils/types";
 import { useLastViewedPhoto } from "./utils/useLastViewedPhoto";
 import { ArrowSmallLeftIcon } from "@heroicons/react/24/outline";
@@ -75,9 +76,11 @@ const ListingImageGallery: FC<Props> = ({
   };
 
   const renderContent = () => {
+    const shouldShowModal = Boolean(photoId);
+
     return (
       <div className=" ">
-        {photoId && (
+        {shouldShowModal ? (
           <Modal
             images={images}
             onClose={() => {
@@ -88,6 +91,19 @@ const ListingImageGallery: FC<Props> = ({
               router.push(`${thisPathname}/?${params.toString()}` as Route);
             }}
           />
+        ) : (
+          // no photoId but modal requested: use SharedModal starting at index 0
+          isShowModal && (
+            <SharedModal
+              index={0}
+              images={images}
+              changePhotoId={(newVal: number) => {
+                router.push(`${thisPathname}/?${getNewParam({ value: newVal })}` as Route);
+              }}
+              closeModal={() => handleClose()}
+              navigation={true}
+            />
+          )
         )}
 
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3">
@@ -96,6 +112,7 @@ const ListingImageGallery: FC<Props> = ({
               key={id}
               onClick={() => {
                 const newPathname = getNewParam({ value: id });
+                // ensure photoId is set (modal will open because we check photoId)
                 router.push(`${thisPathname}/?${newPathname}` as Route);
               }}
               ref={id === Number(lastViewedPhoto) ? lastViewedPhotoRef : null}
@@ -121,7 +138,7 @@ const ListingImageGallery: FC<Props> = ({
 
   return (
     <>
-      <Transition appear show={isShowModal} as={Fragment}>
+      <Transition appear show={Boolean(isShowModal || photoId)} as={Fragment}>
         <Dialog as="div" className="relative z-40" onClose={handleClose}>
           <Transition.Child
             as={Fragment}
