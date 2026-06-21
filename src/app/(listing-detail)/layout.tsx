@@ -40,18 +40,26 @@ const DetailtLayout = ({ children }: { children: ReactNode }) => {
 
     if (thisPathname?.includes("/listing-stay-detail")) {
       const item = findItem(DEMO_STAY_LISTINGS as any);
-      return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
+      if (item?.gallery && Array.isArray(item.gallery)) {
+        return item.gallery.map((g: any, i: number) => ({ id: i, url: g.src }));
+      }
+      return [];
     }
     if (thisPathname?.includes("/listing-car-detail")) {
       const item = findItem(DEMO_CAR_LISTINGS as any);
-      return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
+      if (item?.gallery && Array.isArray(item.gallery)) {
+        return item.gallery.map((g: any, i: number) => ({ id: i, url: g.src }));
+      }
+      return [];
     }
     if (thisPathname?.includes("/listing-experiences-detail")) {
-      // try experiences first, then fallback to stay or cars if the URL id comes from those JSONs
-      let item = findItem(DEMO_EXPERIENCES_LISTINGS as any);
-      if (!item) item = findItem(DEMO_STAY_LISTINGS as any);
-      if (!item) item = findItem(DEMO_CAR_LISTINGS as any);
-      return (item?.galleryImgs || []).map((url: any, i: number) => ({ id: i, url }));
+      // search across experiences, stays and cars combined (same logic as detail page)
+      const all = [...DEMO_EXPERIENCES_LISTINGS, ...DEMO_STAY_LISTINGS, ...DEMO_CAR_LISTINGS];
+      const item = findItem(all as any);
+      if (item?.gallery && Array.isArray(item.gallery)) {
+        return item.gallery.map((g: any, i: number) => ({ id: i, url: g.src }));
+      }
+      return [];
     }
 
     return [];

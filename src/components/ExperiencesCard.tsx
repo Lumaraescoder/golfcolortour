@@ -25,7 +25,6 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
   ratioClass = "aspect-w-3 aspect-h-3",
 }) => {
   const {
-    galleryImgs,
     address,
     title,
     href,
@@ -37,6 +36,7 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
     reviewCount,
     id,
   } = data;
+  const { gallery } = data;
 
   const renderSliderGallery = () => {
     return (
@@ -44,7 +44,7 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
         <GallerySlider
           uniqueID={`ExperiencesCard_${id}`}
           ratioClass={ratioClass}
-          galleryImgs={galleryImgs}
+          gallery={gallery}
           href={href}
         />
         <BtnLikeIcon isLiked={like} className="absolute right-3 top-3" />

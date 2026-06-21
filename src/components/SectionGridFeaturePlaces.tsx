@@ -5,7 +5,6 @@ import ButtonPrimary from "@/shared/ButtonPrimary";
 import HeaderFilter from "./HeaderFilter";
 import StayCard from "./StayCard";
 import StayCard2 from "./StayCard2";
-import { GUIDES_IMAGES } from "@/data/guidesImages";
 
 // OTHER DEMO WILL PASS PROPS
 const DEMO_DATA: StayDataType[] = DEMO_STAY_LISTINGS.filter((_, i) => i < 8);
@@ -44,8 +43,8 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
         CardName = StayCard;
     }
 
-    const img = GUIDES_IMAGES[idx % GUIDES_IMAGES.length];
-    const newData = { ...stay, galleryImgs: [img] } as StayDataType;
+    const gallery = stay.gallery && stay.gallery.length ? stay.gallery : (stay.featuredImage ? [{ src: stay.featuredImage, alt: stay.title || "" }] : []);
+    const newData = { ...stay, gallery } as StayDataType;
     return <CardName key={stay.id} data={newData} />;
   };
 

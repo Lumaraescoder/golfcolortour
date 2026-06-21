@@ -20,7 +20,6 @@ const PropertyCardH: FC<PropertyCardHProps> = ({
   data = DEMO_DATA,
 }) => {
   const {
-    galleryImgs,
     title,
     href,
     like,
@@ -31,13 +30,14 @@ const PropertyCardH: FC<PropertyCardHProps> = ({
     reviewCount,
     id,
   } = data;
+  const { gallery } = data;
 
   const renderSliderGallery = () => {
     return (
       <div className="flex-shrink-0 p-3 w-full sm:w-64 ">
         <GallerySlider
           ratioClass="aspect-w-1 aspect-h-1"
-          galleryImgs={galleryImgs}
+          gallery={gallery}
           className="w-full h-full rounded-2xl overflow-hidden"
           uniqueID={`PropertyCardH_${id}`}
           href={href}

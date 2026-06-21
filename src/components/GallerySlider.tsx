@@ -11,7 +11,10 @@ import { Route } from "@/routers/types";
 
 export interface GallerySliderProps {
   className?: string;
-  galleryImgs: (StaticImageData | string)[];
+  // New canonical gallery: array of objects { src, alt }
+  gallery?: { src: StaticImageData | string; alt?: string }[];
+  // Backwards-compatible array of image srcs
+  galleryImgs?: (StaticImageData | string)[];
   ratioClass?: string;
   uniqueID: string;
   href?: Route<string>;
@@ -23,6 +26,7 @@ export interface GallerySliderProps {
 export default function GallerySlider({
   className = "",
   galleryImgs,
+  gallery,
   ratioClass = "aspect-w-4 aspect-h-3",
   imageClass = "",
   uniqueID = "uniqueID",
@@ -33,7 +37,8 @@ export default function GallerySlider({
   const [loaded, setLoaded] = useState(false);
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const images = galleryImgs;
+  // prefer structured `gallery` -> map to srcs, else fallback to legacy `galleryImgs`
+  const images = gallery ? gallery.map((g) => g.src) : galleryImgs || [];
   const finalHref = href ?? `/listing-stay-detail/${uniqueID}`;
 
   function changePhotoId(newVal: number) {

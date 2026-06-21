@@ -22,7 +22,6 @@ const StayCard: FC<StayCardProps> = ({
   data = DEMO_DATA,
 }) => {
   const {
-    galleryImgs,
     listingCategory,
     address,
     title,
@@ -36,6 +35,7 @@ const StayCard: FC<StayCardProps> = ({
     reviewCount,
     id,
   } = data;
+  const { gallery } = data;
 
   const renderSliderGallery = () => {
     return (
@@ -43,7 +43,7 @@ const StayCard: FC<StayCardProps> = ({
         <GallerySlider
           uniqueID={`StayCard_${id}`}
           ratioClass="aspect-w-4 aspect-h-3 "
-          galleryImgs={galleryImgs}
+          gallery={gallery}
           href={href}
           galleryClass={size === "default" ? undefined : ""}
         />

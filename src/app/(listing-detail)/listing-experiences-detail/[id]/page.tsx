@@ -48,20 +48,12 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
     return <div className="container py-20">Listing not found: {id}</div>;
   }
 
-  const PHOTOS = item.galleryImgs || [];
-  // DEBUG: show galleryImgs content on page to help troubleshooting
-  // (remove this block after debugging)
-  const debugGallery = PHOTOS.map((p) => (typeof p === "string" ? p : (p as any)?.src || "[object]"));
-  console.log("DEBUG listing item:", item);
-  console.log("DEBUG PHOTOS:", debugGallery);
+  const gallery = item.gallery || [];
 
   return (
     <div className={` nc-ListingExperiencesDetailPage `}>
       <header className="rounded-md sm:rounded-xl">
-        <div className="p-4 bg-neutral-100 text-sm text-neutral-700">
-          <strong>Debug galleryImgs:</strong>
-          <pre className="whitespace-pre-wrap break-words">{JSON.stringify(debugGallery, null, 2)}</pre>
-        </div>
+        {/* gallery debug removed */}
         <div className="relative grid grid-cols-4 gap-1 sm:gap-2">
           <div
             className="col-span-3 row-span-3 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
@@ -71,23 +63,23 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
               alt={item.title}
               fill
               className="object-cover  rounded-md sm:rounded-xl"
-              src={PHOTOS[0] || item.featuredImage || ""}
+              src={gallery[0]?.src || item.featuredImage || ""}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
             />
             <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
           </div>
 
-          {PHOTOS.filter((_, i) => i >= 1 && i < 4).map((p: string, index: number) => (
+          {gallery.filter((_, i) => i >= 1 && i < 4).map((p: any, index: number) => (
             <div
               key={index}
               className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 2 ? "block" : ""}`}
             >
               <div className="aspect-w-4 aspect-h-3">
                 <Image
-                  alt={`photo ${index + 2}`}
+                  alt={p?.alt || `photo ${index + 2}`}
                   fill
                   className="object-cover w-full h-full rounded-md sm:rounded-xl "
-                  src={p || item.featuredImage || ""}
+                  src={p?.src || item.featuredImage || ""}
                   sizes="400px"
                 />
               </div>

@@ -1,6 +1,11 @@
 import { Route } from "@/routers/types";
 import { StaticImageData } from "next/image";
 
+export interface TourGalleryImage {
+  src: StaticImageData | string;
+  alt: string;
+}
+
 //  ######  CustomLink  ######## //
 export interface CustomLink {
   label: string;
@@ -75,7 +80,8 @@ export interface StayDataType {
   reviewStart: number;
   reviewCount: number;
   like: boolean;
-  galleryImgs: (StaticImageData | string)[];
+  // Canonical gallery format
+  gallery?: TourGalleryImage[];
   price: string;
   listingCategory: TaxonomyType;
   maxGuests: number;
@@ -103,7 +109,8 @@ export interface ExperiencesDataType {
   reviewStart: number;
   reviewCount: number;
   like: boolean;
-  galleryImgs: (StaticImageData | string)[];
+  // Canonical gallery format
+  gallery?: TourGalleryImage[];
   price: string;
   listingCategory: TaxonomyType;
   maxGuests: number;
@@ -129,7 +136,8 @@ export interface CarDataType {
   reviewStart: number;
   reviewCount: number;
   like: boolean;
-  galleryImgs: (StaticImageData | string)[];
+  // Canonical gallery format
+  gallery?: TourGalleryImage[];
   price: string;
   listingCategory: TaxonomyType;
   seats: number;

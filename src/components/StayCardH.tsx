@@ -20,7 +20,6 @@ const StayCardH: FC<StayCardHProps> = ({
   data = DEMO_DATA,
 }) => {
   const {
-    galleryImgs,
     listingCategory,
     address,
     title,
@@ -33,13 +32,14 @@ const StayCardH: FC<StayCardHProps> = ({
     reviewCount,
     id,
   } = data;
+  const { gallery } = data;
 
   const renderSliderGallery = () => {
     return (
       <div className="relative flex-shrink-0 w-full md:w-72 ">
         <GallerySlider
           ratioClass="aspect-w-6 aspect-h-5"
-          galleryImgs={galleryImgs}
+          gallery={gallery}
           uniqueID={`StayCardH_${id}`}
           href={href}
         />

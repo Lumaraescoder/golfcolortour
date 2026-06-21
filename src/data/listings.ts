@@ -5,7 +5,7 @@ import {
   DEMO_STAY_CATEGORIES,
   DEMO_EXPERIENCES_CATEGORIES,
 } from "./taxonomies";
-import { GUIDES_IMAGES_MAP } from "./guidesImages";
+import { TOUR_IMAGES_MAP } from "./tourImages";
 import { CarDataType, ExperiencesDataType, StayDataType } from "./types";
 import { DEMO_AUTHORS } from "./authors";
 import car1 from "@/images/cars/1.png";
@@ -44,62 +44,7 @@ const carsImgs = [
   car16,
 ];
 
-// guide images
-import alemaesgenteboa from "@/images/guides/alemaesgenteboa.jpeg";
-import alfama1 from "@/images/guides/alfama1.jpeg";
-import alfamase from "@/images/guides/alfamase.jpeg";
-import belem2 from "@/images/guides/belem2.jpeg";
-import belem3 from "@/images/guides/belem3.jpeg";
-import belemefullday from "@/images/guides/belemefullday.jpeg";
-import belemtour from "@/images/guides/belemtour.jpeg";
-import fotosnotuk from "@/images/guides/fotosnotuk.jpeg";
-import gatasuk from "@/images/guides/gatasuk.jpeg";
-import gracaalfama from "@/images/guides/graçaalfama.jpeg";
-import igrejaalfama from "@/images/guides/igrejaalfama.jpeg";
-import linda2 from "@/images/guides/linda2.jpeg";
-import lindafoto from "@/images/guides/lindafoto.jpeg";
-import lucasebrasileiros from "@/images/guides/lucasebrasileiros.jpeg";
-import lucaseospessoalchiado from "@/images/guides/lucaseospessoalchiado.jpeg";
-import lucaspanteaoalfama from "@/images/guides/lucaspanteaoalfama.jpeg";
-import meninas from "@/images/guides/meninas.jpeg";
-import miardouronosassenhoera from "@/images/guides/miardouronosassenhoera.jpeg";
-import miradouro from "@/images/guides/miradouro.jpeg";
-import miradouroalfama from "@/images/guides/miradouroalfama.jpeg";
-import miradouronossasenhora from "@/images/guides/miradouronossasenhora.jpeg";
-import miradouronossasenhotra from "@/images/guides/miradouronossasenhotra.jpeg";
-import panteao_alfama from "@/images/guides/panteao alfama.jpeg";
-import panteaonacional from "@/images/guides/panteaonacional.jpeg";
-import pessoas_notuk from "@/images/guides/pessoas notuk.jpeg";
-import pessoas from "@/images/guides/pessoas.jpeg";
-import pracadocomercio from "@/images/guides/praçadocomercio.jpeg";
-import torrebelem from "@/images/guides/torrebelem.jpeg";
-
-const GUIDES = {
-  alfama: [alfama1, gracaalfama, lucaspanteaoalfama],
-  chiado: [lucaseospessoalchiado, lucasebrasileiros, lindafoto],
-  belem: [belemtour, belem2, belem3, torrebelem],
-  "full day": [belemefullday, miradouro],
-  miradouros: [miradouro, miradouroalfama, miradouronossasenhora],
-  christmas: [linda2, meninas, pessoas],
-  sintra: [pessoas_notuk, fotosnotuk, lucasebrasileiros],
-  fatima: [panteaonacional, pracadocomercio, panteao_alfama],
-  default: [alfama1],
-};
-
-function findGuideImagesForPost(title: string, href: string) {
-  const t = (title || "").toLowerCase();
-  const h = (href || "").toLowerCase();
-
-  if (t.includes("alfama") || h.includes("alfama")) return GUIDES.alfama;
-  if (t.includes("chiado") || t.includes("bairro") || h.includes("chiado") || h.includes("bairro")) return GUIDES.chiado;
-  if (t.includes("belém") || t.includes("belem") || h.includes("belem")) return GUIDES.belem;
-  if (t.includes("full day") || t.includes("full-day") || h.includes("full-day")) return GUIDES["full day"];
-  if (t.includes("miradouros") || t.includes("viewpoints") || h.includes("miradouros")) return GUIDES.miradouros;
-  if (t.includes("christmas") || t.includes("lights")) return GUIDES.christmas;
-  if (t.includes("sintra") || t.includes("cascais")) return GUIDES.sintra;
-  if (t.includes("fatima") || t.includes("nazare") || t.includes("obidos")) return GUIDES.fatima;
-  return GUIDES.default;
-}
+// NOTE: Guided image heuristics removed. Use explicit `gallery` on each post.
 
 const DEMO_STAY_LISTINGS = __stayListing.map((post, index): StayDataType => {
   //  ##########  GET CATEGORY BY CAT ID ######## //
@@ -107,41 +52,42 @@ const DEMO_STAY_LISTINGS = __stayListing.map((post, index): StayDataType => {
     (taxonomy) => taxonomy.id === post.listingCategoryId
   )[0];
 
-  const guideImgs = findGuideImagesForPost(post.title, post.href || "");
-  // merge guide images with object's gallery images
-  const originalImgs = Array.isArray(post.galleryImgs) ? post.galleryImgs : [];
-  // Resolve any filename strings (e.g. "alfama1.jpeg") to imported StaticImageData via GUIDES_IMAGES_MAP
-  const resolvedOriginalImgs = originalImgs.map((img) => {
-    if (typeof img === "string") {
-      // if it's a remote URL, keep it (will be filtered out later)
-      if (/^https?:\/\//i.test(img)) return img;
-      const name = img.split("/").pop() || img;
-      if (GUIDES_IMAGES_MAP[name]) return GUIDES_IMAGES_MAP[name];
-      return img; // keep local path or other string
-    }
-    return img;
-  });
-  const mergedRaw = [...guideImgs, ...resolvedOriginalImgs].filter((v, i, a) => a.indexOf(v) === i);
-  const merged = mergedRaw.filter((img) => {
-    if (typeof img === "string") {
-      return !/^https?:\/\//i.test(img); // remove remote URLs so we use local images
-    }
-    return true;
-  });
-  // fallback: if merged is empty, keep guideImgs
-  const finalGallery = merged.length ? merged : guideImgs;
-  const featured = guideImgs[0] || (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage) ? post.featuredImage : undefined);
-  return {
-    ...post,
-    id: `stayListing_${index}_`,
-    featuredImage: featured,
-    galleryImgs: finalGallery,
-    saleOff: !index ? "-20% today" : post.saleOff,
-    isAds: !index ? true : post.isAds,
-    author: DEMO_AUTHORS.filter((user) => user.id === post.authorId)[0],
-    listingCategory: category,
-    href: post.href as Route,
-  };
+  // Build gallery objects for this post.
+  // Support structured `gallery` in JSON: [{ id, image, alt }]
+  // or legacy `galleryImgs` (array of strings).
+  const structured = Array.isArray((post as any).gallery) ? (post as any).gallery : null;
+  const galleryObjs = structured
+    ? (structured as any[]).map((g) => ({ src: g.image || g.src || g, alt: g.alt || "" }))
+    : Array.isArray(post.galleryImgs)
+    ? (post.galleryImgs as any[]).map((g) => {
+        // try to resolve legacy string path to imported image
+        if (typeof g === "string") {
+          const parts = g.split("/");
+          const filename = parts[parts.length - 1];
+          if (TOUR_IMAGES_MAP[filename]) {
+            return { src: TOUR_IMAGES_MAP[filename], alt: "" };
+          }
+        }
+        return { src: g, alt: "" };
+      })
+    : [];
+
+  const featured = (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage))
+    ? post.featuredImage
+    : undefined;
+
+    return {
+      ...post,
+      id: `stayListing_${index}_`,
+      featuredImage: featured,
+      // canonical gallery of objects
+      gallery: galleryObjs,
+      saleOff: !index ? "-20% today" : post.saleOff,
+      isAds: !index ? true : post.isAds,
+      author: DEMO_AUTHORS.filter((user) => user.id === post.authorId)[0],
+      listingCategory: category,
+      href: post.href as Route,
+    };
 });
 
 const DEMO_EXPERIENCES_LISTINGS = __experiencesListing.map(
@@ -151,35 +97,23 @@ const DEMO_EXPERIENCES_LISTINGS = __experiencesListing.map(
       (taxonomy) => taxonomy.id === post.listingCategoryId
     )[0];
 
-    const guideImgs = findGuideImagesForPost(post.title, post.href || "");
-    const originalImgs = Array.isArray(post.galleryImgs) ? post.galleryImgs : [];
-    // Resolve filename strings in experiences to imported images via GUIDES_IMAGES_MAP
-    const resolvedOriginalImgs = originalImgs.map((img) => {
-      if (typeof img === "string") {
-        if (/^https?:\/\//i.test(img)) return img;
-        const name = img.split("/").pop() || img;
-        if (GUIDES_IMAGES_MAP[name]) return GUIDES_IMAGES_MAP[name];
-        return img;
-      }
-      return img;
-    });
-    // If original gallery images are provided explicitly for the experience, prefer them.
-    // Otherwise fall back to guide images.
-    const sourceImgs = resolvedOriginalImgs.length ? resolvedOriginalImgs : guideImgs;
-    const mergedRaw = sourceImgs.filter((v, i, a) => a.indexOf(v) === i);
-    const merged = mergedRaw.filter((img) => {
-      if (typeof img === "string") {
-        return !/^https?:\/\//i.test(img);
-      }
-      return true;
-    });
-    const finalGallery = merged.length ? merged : guideImgs;
-    const featured = guideImgs[0] || (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage) ? post.featuredImage : undefined);
+    // Build gallery objects from structured gallery or legacy galleryImgs
+    const structured = Array.isArray((post as any).gallery) ? (post as any).gallery : null;
+    const galleryObjs = structured
+      ? (structured as any[]).map((g) => ({ src: g.image || g.src || g, alt: g.alt || "" }))
+      : Array.isArray(post.galleryImgs)
+      ? (post.galleryImgs as any[]).map((g) => ({ src: g, alt: "" }))
+      : [];
+
+    const featured = (post.featuredImage && typeof post.featuredImage === "string" && !/^https?:\/\//i.test(post.featuredImage))
+      ? post.featuredImage
+      : undefined;
+
     return {
       ...post,
       id: `experiencesListing_${index}_`,
       featuredImage: featured,
-      galleryImgs: finalGallery,
+      gallery: galleryObjs,
       saleOff: !index ? "-20% today" : post.saleOff,
       isAds: !index ? true : post.isAds,
       author: DEMO_AUTHORS.filter((user) => user.id === post.authorId)[0],

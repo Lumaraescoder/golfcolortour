@@ -1,3 +1,4 @@
+// Centralized guide images exports (used when building explicit tour galleries)
 import alemaesgenteboa from "@/images/guides/alemaesgenteboa.jpeg";
 import alfama1 from "@/images/guides/alfama1.jpeg";
 import alfamase from "@/images/guides/alfamase.jpeg";
@@ -27,7 +28,7 @@ import pessoas from "@/images/guides/pessoas.jpeg";
 import pracadocomercio from "@/images/guides/praçadocomercio.jpeg";
 import torrebelem from "@/images/guides/torrebelem.jpeg";
 
-export const GUIDES_IMAGES = [
+export {
   alemaesgenteboa,
   alfama1,
   alfamase,
@@ -56,12 +57,10 @@ export const GUIDES_IMAGES = [
   pessoas,
   pracadocomercio,
   torrebelem,
-];
+};
 
-export default GUIDES_IMAGES;
-
-// Map filenames to imported StaticImageData so listings can reference images by filename
-export const GUIDES_IMAGES_MAP: Record<string, any> = {
+// Map original filenames (as used in JSON) to imported StaticImageData
+export const TOUR_IMAGES_MAP: Record<string, any> = {
   "alemaesgenteboa.jpeg": alemaesgenteboa,
   "alfama1.jpeg": alfama1,
   "alfamase.jpeg": alfamase,
@@ -91,23 +90,3 @@ export const GUIDES_IMAGES_MAP: Record<string, any> = {
   "praçadocomercio.jpeg": pracadocomercio,
   "torrebelem.jpeg": torrebelem,
 };
-
-// Add normalized keys (remove diacritics and normalize spaces) so JSON can reference ASCII filenames
-const normalize = (s: string) =>
-  s
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-Object.keys(GUIDES_IMAGES_MAP).forEach((k) => {
-  const v = GUIDES_IMAGES_MAP[k];
-  const ascii = normalize(k);
-  if (ascii !== k && !GUIDES_IMAGES_MAP[ascii]) {
-    GUIDES_IMAGES_MAP[ascii] = v;
-  }
-  const asciiNoSpace = ascii.replace(/\s+/g, "");
-  if (asciiNoSpace !== k && !GUIDES_IMAGES_MAP[asciiNoSpace]) {
-    GUIDES_IMAGES_MAP[asciiNoSpace] = v;
-  }
-});

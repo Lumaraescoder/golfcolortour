@@ -21,7 +21,6 @@ const ExperiencesCardH: FC<ExperiencesCardHProps> = ({
   data = DEMO_DATA,
 }) => {
   const {
-    galleryImgs,
     address,
     title,
     href,
@@ -34,13 +33,14 @@ const ExperiencesCardH: FC<ExperiencesCardHProps> = ({
     author,
     id,
   } = data;
+  const { gallery } = data;
 
   const renderSliderGallery = () => {
     return (
       <div className="relative w-full md:w-72 flex-shrink-0 overflow-hidden">
         <GallerySlider
           ratioClass="aspect-w-12 aspect-h-9 md:aspect-h-11"
-          galleryImgs={galleryImgs}
+          gallery={gallery}
           uniqueID={`ExperiencesCardH_${id}`}
           href={href}
         />
