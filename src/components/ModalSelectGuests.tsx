@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, Fragment, useState } from "react";
+import React, { FC, Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import ButtonPrimary from "@/shared/ButtonPrimary";
@@ -8,9 +8,11 @@ import GuestsInput from "@/app/(client-components)/(HeroSearchForm2Mobile)/Guest
 
 interface ModalSelectGuestsProps {
   renderChildren?: (p: { openModal: () => void }) => React.ReactNode;
+  value?: { guestAdults?: number; guestChildren?: number; guestInfants?: number };
+  onSave?: (data: { guestAdults?: number; guestChildren?: number; guestInfants?: number }) => void;
 }
 
-const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren }) => {
+const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, onSave }) => {
   const [showModal, setShowModal] = useState(false);
 
   // FOR RESET ALL DATA WHEN CLICK CLEAR BUTTON
@@ -23,13 +25,22 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren }) => {
     setShowModal(true);
   }
 
-  const renderButtonOpenModal = () => {
-    return renderChildren ? (
-      renderChildren({ openModal })
-    ) : (
-      <button onClick={openModal}>Select Date</button>
-    );
-  };
+    const [currentGuests, setCurrentGuests] = useState({
+      guestAdults: 0,
+      guestChildren: 0,
+      guestInfants: 0,
+    });
+    useEffect(() => {
+      if (value) setCurrentGuests(value);
+    }, [value]);
+
+    const renderButtonOpenModal = () => {
+      return renderChildren ? (
+        renderChildren({ openModal })
+      ) : (
+        <button onClick={openModal}>Select Date</button>
+      );
+    };
 
   return (
     <>
@@ -68,7 +79,10 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren }) => {
                           <div
                             className={`flex-1 relative flex z-10 overflow-hidden`}
                           >
-                            <GuestsInput />
+                            <GuestsInput
+                              defaultValue={value}
+                              onChange={(data) => setCurrentGuests(data)}
+                            />
                           </div>
                         </div>
                       </div>
@@ -85,6 +99,7 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren }) => {
                         sizeClass="px-6 py-3 !rounded-xl"
                         onClick={() => {
                           closeModal();
+                          onSave && onSave(currentGuests);
                         }}
                       >
                         Save

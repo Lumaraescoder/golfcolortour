@@ -96,46 +96,21 @@ const ListingExperiencesDetailPage: FC<
         <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
         <div className="text-neutral-6000 dark:text-neutral-300">
           <p>
-            TRANG AN BOAT TOUR & MUA CAVE CLIMBING TOUR FROM HANOI
+            PRIVATE TUK-TUK TOUR — tailored around you.
             <br />
             <br />
-            07:30 – 08:00 – Our guide will meet you at your hotel/stay and start
-            a 120km comfortable Limousine bus journey through the verdant
-            landscape. Stopover for a rest on the way.
+            07:30 – Our guide will meet you at the agreed pickup point and
+            begin the tour in a comfortable, 100% electric tuk-tuk. The route
+            includes the sanctuary, coastal viewpoints and medieval streets —
+            stops and timing are adapted to your pace and interests.
             <br />
             <br />
-            BAI DINH PAGODA EXPLORER.
+            Lunch and short breaks are included where indicated. At the end of
+            the day we return to the original pickup point.
             <br />
             <br />
-            10:30 – Arrive Bai Dinh pagoda complex, get on electric cars to
-            visit massive architecture.
-            <br />
-            <br />
-            12:15 – Enjoy the buffet lunch at our restaurant, a great place to
-            savor the flavours of Vietnamese food.
-            <br />
-            <br />
-            TRANG AN TOUR ON BOAT.
-            <br />
-            <br />
-            13:30 – Visit Trang An Grottoes, get on a rowing boat traveling
-            along the river with scenic mountain and green fields landscape.
-            <br />
-            <br />
-            MUA CAVE HIKING. TAKE PICTURE
-            <br />
-            <br />
-            15:45 – Arrive at Mua Cave and start an amazing trek up to the top
-            of Ngoa Long mountain.
-            <br />
-            <br />
-            17:30 – 20:00 – Return to our Limousine bus and then come back to
-            Hanoi. Drop you off at your hotel/stay. Other things to note
-            <br />
-            <br />
-            It is one full day tour. Start from 07.30 AM and finish at 20.00. We
-            just put one hour and default departure time because we have many
-            other tours. IF you need any further details
+            This is a full-day tour; times are indicative and can be adjusted
+            on request.
           </p>
         </div>
       </div>
@@ -257,9 +232,9 @@ const ListingExperiencesDetailPage: FC<
 
         {/* CONTENT */}
         <div>
-          <h4 className="text-lg font-semibold">Guest requirements</h4>
+          <h4 className="text-lg font-semibold">Person requirements</h4>
           <span className="block mt-3 text-neutral-500 dark:text-neutral-400">
-            Up to 10 guests ages 4 and up can attend. Parents may also bring
+            Up to 10 persons ages 4 and up can attend. Parents may also bring
             children under 2 years of age.
           </span>
         </div>
