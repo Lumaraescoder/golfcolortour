@@ -17,7 +17,7 @@ export type SiteHeaders = "Header 1" | "Header 2" | "Header 3";
 
 interface HomePageItem {
   name: string;
-  slug: PathName;
+  slug: string;
 }
 
 let OPTIONS = {
@@ -26,8 +26,8 @@ let OPTIONS = {
   threshold: 1.0,
 };
 let OBSERVER: IntersectionObserver | null = null;
-const PAGES_HIDE_HEADER_BORDER: PathName[] = [
-  "/home-3",
+const PAGES_HIDE_HEADER_BORDER: string[] = [
+  "/home-2",
   "/listing-car-detail",
   "/listing-experiences-detail",
   "/listing-stay-detail",
@@ -64,7 +64,7 @@ const SiteHeader = () => {
   useEffect(() => {
     // disconnect the observer
     // observer for show the LINE bellow header
-    if (!PAGES_HIDE_HEADER_BORDER.includes(pathname as PathName)) {
+    if (!PAGES_HIDE_HEADER_BORDER.includes(pathname || "")) {
       OBSERVER && OBSERVER.disconnect();
       OBSERVER = null;
       return;

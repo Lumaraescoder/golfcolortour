@@ -25,22 +25,22 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
     setShowModal(true);
   }
 
-    const [currentGuests, setCurrentGuests] = useState({
-      guestAdults: 0,
-      guestChildren: 0,
-      guestInfants: 0,
-    });
-    useEffect(() => {
-      if (value) setCurrentGuests(value);
-    }, [value]);
+  const [currentGuests, setCurrentGuests] = useState({
+    guestAdults: 0,
+    guestChildren: 0,
+    guestInfants: 0,
+  });
+  useEffect(() => {
+    if (value) setCurrentGuests(value);
+  }, [value]);
 
-    const renderButtonOpenModal = () => {
-      return renderChildren ? (
-        renderChildren({ openModal })
-      ) : (
-        <button onClick={openModal}>Select Date</button>
-      );
-    };
+  const renderButtonOpenModal = () => {
+    return renderChildren ? (
+      renderChildren({ openModal })
+    ) : (
+      <button onClick={openModal}>Select Date</button>
+    );
+  };
 
   return (
     <>
@@ -91,7 +91,7 @@ const ModalSelectGuests: FC<ModalSelectGuestsProps> = ({ renderChildren, value, 
                       <button
                         type="button"
                         className="underline font-semibold flex-shrink-0"
-                        onClick={() => {}}
+                        onClick={() => { }}
                       >
                         Clear data
                       </button>

@@ -9,7 +9,6 @@ import FooterNav from "./FooterNav";
 const HEADER_LINKS: CustomLink[] = [
   { href: "/", label: "Home" },
   { href: "/listing-experiences", label: "Tours" },
-  { href: "/destinations", label: "Destinations" },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/contact", label: "Contact" },
 ];

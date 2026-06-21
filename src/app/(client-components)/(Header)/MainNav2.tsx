@@ -21,8 +21,7 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
           <nav className="hidden lg:flex space-x-6 text-neutral-700 dark:text-neutral-100">
             <Link href="/" className="hover:text-black">Home</Link>
             <Link href="/listing-experiences" className="hover:text-black">Tours</Link>
-            <Link href="/destinations" className="hover:text-black">Destinations</Link>
-            <Link href="/testimonials" className="hover:text-black">Testimonials</Link>
+            {/* <Link href="/testimonials" className="hover:text-black">Testimonials</Link> */}
             <Link href="/contact" className="hover:text-black">Contact</Link>
           </nav>
         </div>

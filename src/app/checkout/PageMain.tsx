@@ -168,11 +168,10 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                 <Tab as={Fragment}>
                   {({ selected }) => (
                     <button
-                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5 rounded-full focus:outline-none ${
-                        selected
+                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5 rounded-full focus:outline-none ${selected
                           ? "bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900"
                           : "text-neutral-6000 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                      }`}
+                        }`}
                     >
                       Paypal
                     </button>
@@ -181,11 +180,10 @@ const CheckOutPagePageMain: FC<CheckOutPagePageMainProps> = ({
                 <Tab as={Fragment}>
                   {({ selected }) => (
                     <button
-                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5  rounded-full flex items-center justify-center focus:outline-none  ${
-                        selected
+                      className={`px-4 py-1.5 sm:px-6 sm:py-2.5  rounded-full flex items-center justify-center focus:outline-none  ${selected
                           ? "bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-900"
                           : " text-neutral-6000 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                      }`}
+                        }`}
                     >
                       <span className="mr-2.5">Credit card</span>
                       <Image className="w-8" src={visaPng} alt="visa" />

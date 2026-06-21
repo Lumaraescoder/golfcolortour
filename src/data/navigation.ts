@@ -166,7 +166,6 @@ const templatesChildrenMenus: NavItemType[] = [
 export const NAVIGATION_DEMO: NavItemType[] = [
   { id: ncNanoId(), href: "/", name: "Home" },
   { id: ncNanoId(), href: "/listing-experiences", name: "Tours" },
-  { id: ncNanoId(), href: "/destinations", name: "Destinations" },
   { id: ncNanoId(), href: "/testimonials", name: "Testimonials" },
   { id: ncNanoId(), href: "/contact", name: "Contact" },
 ];
