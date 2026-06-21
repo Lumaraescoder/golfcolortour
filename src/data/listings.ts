@@ -5,6 +5,7 @@ import {
   DEMO_STAY_CATEGORIES,
   DEMO_EXPERIENCES_CATEGORIES,
 } from "./taxonomies";
+import { GUIDES_IMAGES_MAP } from "./guidesImages";
 import { CarDataType, ExperiencesDataType, StayDataType } from "./types";
 import { DEMO_AUTHORS } from "./authors";
 import car1 from "@/images/cars/1.png";
@@ -107,14 +108,25 @@ const DEMO_STAY_LISTINGS = __stayListing.map((post, index): StayDataType => {
   )[0];
 
   const guideImgs = findGuideImagesForPost(post.title, post.href || "");
-  // merge guide images with object's gallery images, remove duplicates and filter out remote URLs
+  // merge guide images with object's gallery images
   const originalImgs = Array.isArray(post.galleryImgs) ? post.galleryImgs : [];
-  const mergedRaw = [...guideImgs, ...originalImgs].filter((v, i, a) => a.indexOf(v) === i);
+  // Resolve any filename strings (e.g. "alfama1.jpeg") to imported StaticImageData via GUIDES_IMAGES_MAP
+  const resolvedOriginalImgs = originalImgs.map((img) => {
+    if (typeof img === "string") {
+      // if it's a remote URL, keep it (will be filtered out later)
+      if (/^https?:\/\//i.test(img)) return img;
+      const name = img.split("/").pop() || img;
+      if (GUIDES_IMAGES_MAP[name]) return GUIDES_IMAGES_MAP[name];
+      return img; // keep local path or other string
+    }
+    return img;
+  });
+  const mergedRaw = [...guideImgs, ...resolvedOriginalImgs].filter((v, i, a) => a.indexOf(v) === i);
   const merged = mergedRaw.filter((img) => {
     if (typeof img === "string") {
-      return !/^https?:\/\//i.test(img);
+      return !/^https?:\/\//i.test(img); // remove remote URLs so we use local images
     }
-    return true; // keep imported StaticImageData
+    return true;
   });
   // fallback: if merged is empty, keep guideImgs
   const finalGallery = merged.length ? merged : guideImgs;

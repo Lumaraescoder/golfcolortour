@@ -5,9 +5,10 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import { Route } from "next";
 import Image from "next/image";
 import { ArrowRightIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
-import CommentListing from "@/components/CommentListing";
+// Comments removed; using testimonials
+import SectionClientSay from "@/components/SectionClientSay";
 import FiveStartIconForRate from "@/components/FiveStartIconForRate";
-import Avatar from "@/shared/Avatar";
+// Avatar removed per request
 import Badge from "@/shared/Badge";
 import ButtonCircle from "@/shared/ButtonCircle";
 import ButtonPrimary from "@/shared/ButtonPrimary";
@@ -17,7 +18,7 @@ import LikeSaveBtns from "@/components/LikeSaveBtns";
 import StartRating from "@/components/StartRating";
 import StayDatesRangeInput from "../StayDatesRangeInput";
 import GuestsInput from "../GuestsInput";
-import SectionDateRange from "../../SectionDateRange";
+// SectionDateRange removed for experiences detail
 import { DEMO_EXPERIENCES_LISTINGS, DEMO_STAY_LISTINGS } from "@/data/listings";
 
 const ListingExperiencesDetailPageDynamic: FC = () => {
@@ -118,12 +119,11 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
        </span>
       </div>
 
-      <div className="flex items-center">
-       <Avatar hasChecked sizeClass="h-10 w-10" radius="rounded-full" />
-       <span className="ml-2.5 text-neutral-500 dark:text-neutral-400">
-        Hosted by <span className="text-neutral-900 dark:text-neutral-200 font-medium">{item.author?.displayName || item.author?.name || "Host"}</span>
-       </span>
-      </div>
+    <div className="flex items-center">
+     <span className="text-neutral-500 dark:text-neutral-400">
+      Hosted by <span className="text-neutral-900 dark:text-neutral-200 font-medium">{item.author?.displayName || item.author?.name || "Host"}</span>
+     </span>
+    </div>
      </div>
 
      <div className="listingSection__wrap">
@@ -134,18 +134,11 @@ const ListingExperiencesDetailPageDynamic: FC = () => {
       </div>
      </div>
 
-     <SectionDateRange />
+    {/* Availability removed for experiences detail */}
 
      {/* Host Information removed as requested */}
 
-     <div className="listingSection__wrap">
-      <h2 className="text-2xl font-semibold">Reviews</h2>
-      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-      <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
-       <CommentListing className="py-8" />
-       <CommentListing className="py-8" />
-      </div>
-     </div>
+    <SectionClientSay />
     </div>
 
     <div className="hidden lg:block flex-grow mt-14 lg:mt-0">

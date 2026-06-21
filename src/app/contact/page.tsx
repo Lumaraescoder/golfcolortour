@@ -6,7 +6,7 @@ import Input from "@/shared/Input";
 import Textarea from "@/shared/Textarea";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 
-export interface PageContactProps {}
+export interface PageContactProps { }
 
 const info = [
   {
@@ -23,7 +23,7 @@ const info = [
   },
 ];
 
-const PageContact: FC<PageContactProps> = ({}) => {
+const PageContact: FC<PageContactProps> = ({ }) => {
   return (
     <div className={`nc-PageContact overflow-hidden`}>
       <div className="mb-24 lg:mb-32">
@@ -84,10 +84,7 @@ const PageContact: FC<PageContactProps> = ({}) => {
         </div>
       </div>
 
-      {/* OTHER SECTIONS */}
-      <div className="container">
-        <SectionSubscribe2 className="pb-24 lg:pb-32" />
-      </div>
+
     </div>
   );
 };

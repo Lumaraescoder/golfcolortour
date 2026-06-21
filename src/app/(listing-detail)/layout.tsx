@@ -6,7 +6,6 @@ import SectionSliderNewCategories from "@/components/SectionSliderNewCategories"
 import SectionSubscribe2 from "@/components/SectionSubscribe2";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { ReactNode } from "react";
-import MobileFooterSticky from "./(components)/MobileFooterSticky";
 import { DEMO_STAY_LISTINGS, DEMO_EXPERIENCES_LISTINGS, DEMO_CAR_LISTINGS } from "@/data/listings";
 import { Route } from "next";
 
@@ -67,8 +66,7 @@ const DetailtLayout = ({ children }: { children: ReactNode }) => {
 
       {/* OTHER SECTION removed: categories slider and newsletter intentionally omitted */}
 
-      {/* STICKY FOOTER MOBILE */}
-      <MobileFooterSticky />
+      {/* STICKY FOOTER MOBILE removed */}
     </div>
   );
 };
