@@ -6,7 +6,6 @@ import useOutsideAlerter from "@/hooks/useOutsideAlerter";
 import NotifyDropdown from "./NotifyDropdown";
 import AvatarDropdown from "./AvatarDropdown";
 import MenuBar from "@/shared/MenuBar";
-import NavMobile from "@/shared/Navigation/NavMobile";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { SearchTab } from "../(HeroSearchForm)/HeroSearchForm";
 import Link from "next/link";
@@ -26,11 +25,7 @@ if (typeof window !== "undefined") {
 
 const Header3: FC<Header3Props> = ({ className = "" }) => {
   const headerInnerRef = useRef<HTMLDivElement>(null);
-  //
-  const [openNavMobile, setOpenNavMobile] = useState(false);
-
-  const handleOpenNavMobile = () => setOpenNavMobile(true);
-  const handleCloseNavMobile = () => setOpenNavMobile(false);
+  // no separate mobile slide-over: use shared MenuBar dropdown
 
   const [showHeroSearch, setShowHeroSearch] =
     useState<StaySearchFormFields | null>();
@@ -170,15 +165,9 @@ const Header3: FC<Header3Props> = ({ className = "" }) => {
               <Logo />
             </div>
 
-            {/* Mobile: hamburger */}
+            {/* Mobile: hamburger (shared MenuBar) */}
             <div className="flex items-center md:hidden">
-              <button
-                aria-label="Open menu"
-                onClick={handleOpenNavMobile}
-                className="p-2 rounded-md inline-flex items-center justify-center text-neutral-700 dark:text-neutral-100"
-              >
-                <Bars3Icon className="w-6 h-6" />
-              </button>
+              <MenuBar />
             </div>
 
             <div className="flex flex-[2] lg:flex-none mx-auto">
@@ -209,11 +198,7 @@ const Header3: FC<Header3Props> = ({ className = "" }) => {
           </div>
         </div>
       </header>
-      {openNavMobile && (
-        <div className="fixed inset-0 z-50">
-          <NavMobile onClickClose={handleCloseNavMobile} />
-        </div>
-      )}
+      {/* no slide-over mobile nav */}
     </>
   );
 };

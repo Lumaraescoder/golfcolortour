@@ -1,5 +1,5 @@
 import React from "react";
-import logoImg from "@/images/logo.jpeg";
+import logoImg from "@/images/logo.png";
 import logoLightImg from "@/images/logo-light.png";
 import Link from "next/link";
 import { StaticImageData } from "next/image";
@@ -8,12 +8,14 @@ export interface LogoProps {
   img?: StaticImageData;
   imgLight?: StaticImageData;
   className?: string;
+  imgClassName?: string;
 }
 
 const Logo: React.FC<LogoProps> = ({
   img = logoImg,
   imgLight = logoLightImg,
   className = "w-32",
+  imgClassName = "max-h-16",
 }) => {
   return (
     <Link
@@ -23,7 +25,7 @@ const Logo: React.FC<LogoProps> = ({
       {/* Use image logo */}
       {img ? (
         <img
-          className={`block max-h-16 ${imgLight ? "dark:hidden" : ""}`}
+          className={`block ${imgClassName} ${imgLight ? "dark:hidden" : ""}`}
           src={img.src || img}
           alt="Logo"
         />
@@ -32,7 +34,7 @@ const Logo: React.FC<LogoProps> = ({
       )}
       {imgLight && (
         <img
-          className="hidden max-h-16 dark:block"
+          className={`hidden ${imgClassName} dark:block`}
           src={imgLight.src || imgLight}
           alt="Logo-Light"
         />

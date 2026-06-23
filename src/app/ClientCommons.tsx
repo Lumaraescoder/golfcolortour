@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useThemeMode } from "@/utils/useThemeMode";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const ClientCommons = () => {
   //
@@ -29,7 +30,11 @@ const ClientCommons = () => {
     };
   }, [pathname]);
 
-  return <></>;
+  return (
+    <>
+      <WhatsAppFloat />
+    </>
+  );
 };
 
 export default ClientCommons;

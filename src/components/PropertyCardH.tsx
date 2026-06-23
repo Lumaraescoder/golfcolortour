@@ -4,7 +4,7 @@ import { DEMO_STAY_LISTINGS } from "@/data/listings";
 import StartRating from "@/components/StartRating";
 import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
-import Badge from "@/shared/Badge";
+// Badge removed for ADS display
 import { StayDataType } from "@/data/types";
 import Link from "next/link";
 
@@ -109,7 +109,7 @@ const PropertyCardH: FC<PropertyCardHProps> = ({
             />
           </div>
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {/* ADS badge removed */}
             <h2 className="text-lg font-medium capitalize">
               <span className="line-clamp-2">{title}</span>
             </h2>

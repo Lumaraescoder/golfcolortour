@@ -5,7 +5,7 @@ import { ExperiencesDataType } from "@/data/types";
 import StartRating from "@/components/StartRating";
 import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
-import Badge from "@/shared/Badge";
+// Badge removed for ADS display
 import Avatar from "@/shared/Avatar";
 import Link from "next/link";
 
@@ -55,7 +55,7 @@ const ExperiencesCardH: FC<ExperiencesCardHProps> = ({
       <div className="flex-grow p-3 sm:p-5 flex flex-col">
         <div className="space-y-2">
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {/* ADS badge removed */}
             <h2 className="text-lg font-medium capitalize">
               <span className="line-clamp-1">{title}</span>
             </h2>

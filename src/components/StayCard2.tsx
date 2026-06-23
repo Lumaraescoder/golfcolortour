@@ -5,13 +5,14 @@ import { StayDataType } from "@/data/types";
 import StartRating from "@/components/StartRating";
 import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
-import Badge from "@/shared/Badge";
+// Badge removed for ADS display
 import Link from "next/link";
 
 export interface StayCard2Props {
   className?: string;
   data?: StayDataType;
   size?: "default" | "small";
+  unit?: string;
 }
 
 const DEMO_DATA = DEMO_STAY_LISTINGS[0];
@@ -20,6 +21,7 @@ const StayCard2: FC<StayCard2Props> = ({
   size = "default",
   className = "",
   data = DEMO_DATA,
+  unit = "/night",
 }) => {
   const {
     listingCategory,
@@ -61,7 +63,7 @@ const StayCard2: FC<StayCard2Props> = ({
             {listingCategory.name}
           </span>
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {/* ADS badge removed */}
             <h2
               className={`font-semibold capitalize text-neutral-900 dark:text-white ${size === "default" ? "text-base" : "text-base"
                 }`}
@@ -101,7 +103,7 @@ const StayCard2: FC<StayCard2Props> = ({
             {` `}
             {size === "default" && (
               <span className="text-sm text-neutral-500 dark:text-neutral-400 font-normal">
-                /night
+                {unit}
               </span>
             )}
           </span>

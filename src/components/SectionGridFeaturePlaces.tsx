@@ -18,6 +18,7 @@ export interface SectionGridFeaturePlacesProps {
   headingIsCenter?: boolean;
   tabs?: string[];
   cardType?: "card1" | "card2";
+  unit?: string;
 }
 
 const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
@@ -28,6 +29,7 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
   headingIsCenter,
   tabs = [],
   cardType = "card2",
+  unit = "/night",
 }) => {
   const renderCard = (stay: StayDataType, idx: number) => {
     let CardName = StayCard;
@@ -45,7 +47,7 @@ const SectionGridFeaturePlaces: FC<SectionGridFeaturePlacesProps> = ({
 
     const gallery = stay.gallery && stay.gallery.length ? stay.gallery : (stay.featuredImage ? [{ src: stay.featuredImage, alt: stay.title || "" }] : []);
     const newData = { ...stay, gallery } as StayDataType;
-    return <CardName key={stay.id} data={newData} />;
+    return <CardName key={stay.id} data={newData} unit={unit} />;
   };
 
   return (

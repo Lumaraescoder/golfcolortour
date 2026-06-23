@@ -4,7 +4,7 @@ import { CarDataType } from "@/data/types";
 import StartRating from "@/components/StartRating";
 import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
-import Badge from "@/shared/Badge";
+// Badge removed for ADS display
 import Image from "next/image";
 import Link from "next/link";
 
@@ -57,7 +57,7 @@ const CarCard: FC<CarCardProps> = ({
       <div className={size === "default" ? "p-5  space-y-4" : "p-3  space-y-2"}>
         <div className="space-y-2">
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {/* ADS badge removed */}
             <h2
               className={`  capitalize ${
                 size === "default"

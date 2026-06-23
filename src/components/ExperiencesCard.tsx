@@ -5,7 +5,7 @@ import { ExperiencesDataType } from "@/data/types";
 import StartRating from "@/components/StartRating";
 import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
-import Badge from "@/shared/Badge";
+// Badge removed for ADS display
 import Link from "next/link";
 import { MapPinIcon } from "@heroicons/react/24/outline";
 
@@ -63,7 +63,7 @@ const ExperiencesCard: FC<ExperiencesCardProps> = ({
           </div>
 
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {/* ADS badge removed */}
             <h2
               className={` font-medium capitalize ${size === "default" ? "text-base" : "text-base"
                 }`}

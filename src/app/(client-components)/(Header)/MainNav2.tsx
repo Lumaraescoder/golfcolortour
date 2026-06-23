@@ -19,10 +19,10 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
         <div className="hidden md:flex items-center space-x-6 flex-1">
           <Logo className="w-32 self-center" />
           <nav className="hidden lg:flex space-x-6 text-neutral-700 dark:text-neutral-100">
-            <Link href="/" className="hover:text-black">Home</Link>
-            <Link href="/listing-experiences" className="hover:text-black">Tours</Link>
-            {/* <Link href="/testimonials" className="hover:text-black">Testimonials</Link> */}
-            <Link href="/contact" className="hover:text-black">Contact</Link>
+            <Link href="/#hero" className="hover:text-black">Home</Link>
+            <Link href="/#tours" className="hover:text-black">Tours</Link>
+            {/* <Link href="/#testimonials" className="hover:text-black">Testimonials</Link> */}
+            <Link href="/#contact" className="hover:text-black">Contact</Link>
           </nav>
         </div>
 
@@ -30,14 +30,15 @@ const MainNav2: FC<MainNav2Props> = ({ className = "" }) => {
           <Logo className="w-32 mx-auto" />
         </div>
 
+        <div className="flex items-center md:hidden">
+          {pathname !== "/" && <AvatarDropdown />}
+          <MenuBar />
+        </div>
+
         <div className="hidden md:flex flex-shrink-0 justify-end flex-1 lg:flex-none text-neutral-700 dark:text-neutral-100 items-center">
           <div className="hidden lg:flex items-center space-x-3">
             <LangDropdown />
             {pathname !== "/" && <AvatarDropdown />}
-          </div>
-          <div className="flex lg:hidden items-center">
-            {pathname !== "/" && <AvatarDropdown />}
-            <MenuBar />
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { StayDataType } from "@/data/types";
 import StartRating from "@/components/StartRating";
 import BtnLikeIcon from "@/components/BtnLikeIcon";
 import SaleOffBadge from "@/components/SaleOffBadge";
-import Badge from "@/shared/Badge";
+// Badge removed for ADS display
 import Link from "next/link";
 
 export interface StayCardHProps {
@@ -108,7 +108,7 @@ const StayCardH: FC<StayCardHProps> = ({
             </span>
           </div>
           <div className="flex items-center space-x-2">
-            {isAds && <Badge name="ADS" color="green" />}
+            {/* ADS badge removed */}
             <h2 className="text-lg font-medium capitalize">
               <span className="line-clamp-1">{title}</span>
             </h2>

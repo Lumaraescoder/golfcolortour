@@ -55,7 +55,7 @@ function PageHome3() {
       <BgGlassmorphism />
 
       {/* SECTION HERO */}
-      <div className="container px-1 sm:px-4 mb-24 ">
+      <div id="hero" className="container px-1 sm:px-4 mb-24 ">
         <SectionHero3 className="" />
       </div>
 
@@ -72,7 +72,9 @@ function PageHome3() {
           <SectionGridAuthorBox boxCard="box2" />
         </div> */}
 
-        <SectionGridFeaturePlaces />
+        <div id="tours">
+          <SectionGridFeaturePlaces unit="/person" />
+        </div>
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6 lg:col-span-4 flex">
             <CardCategory6 taxonomy={DEMO_CATS_2[0]} />
@@ -86,9 +88,15 @@ function PageHome3() {
           </div>
         </div>
         {/* SECTION */}
-        <div className="relative py-16">
+        <div id="testimonials" className="relative py-16">
           <BackgroundSection />
           <SectionClientSay />
+        </div>
+        {/* Contact / Subscribe section as anchor target */}
+        <div id="contact" className="relative py-16">
+          <div className="container">
+            <SectionSubscribe2 />
+          </div>
         </div>
       </div>
     </main>
